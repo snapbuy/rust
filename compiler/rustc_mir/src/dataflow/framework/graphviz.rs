@@ -366,7 +366,11 @@ where
         let mut afters = diffs.after.into_iter();
 
         let next_in_dataflow_order = |it: &mut std::vec::IntoIter<_>| {
-            if A::Direction::is_forward() { it.next().unwrap() } else { it.next_back().unwrap() }
+            if A::Direction::is_forward() {
+                it.next().unwrap()
+            } else {
+                it.next_back().unwrap()
+            }
         };
 
         for (i, statement) in body[block].statements.iter().enumerate() {

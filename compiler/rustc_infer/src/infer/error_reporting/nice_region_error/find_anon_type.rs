@@ -181,7 +181,7 @@ impl Visitor<'tcx> for FindNestedTypeVisitor<'tcx> {
                     current_index: self.current_index,
                 };
                 intravisit::walk_ty(subvisitor, arg); // call walk_ty; as visit_ty is empty,
-                // this will visit only outermost type
+                                                      // this will visit only outermost type
                 if subvisitor.found_it {
                     self.found_type = Some(arg);
                 }

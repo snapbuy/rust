@@ -95,7 +95,11 @@ pub enum Determinacy {
 
 impl Determinacy {
     fn determined(determined: bool) -> Determinacy {
-        if determined { Determinacy::Determined } else { Determinacy::Undetermined }
+        if determined {
+            Determinacy::Determined
+        } else {
+            Determinacy::Undetermined
+        }
     }
 }
 
@@ -3308,7 +3312,11 @@ impl<'a> Resolver<'a> {
     /// Retrieves the span of the given `DefId` if `DefId` is in the local crate.
     #[inline]
     pub fn opt_span(&self, def_id: DefId) -> Option<Span> {
-        if let Some(def_id) = def_id.as_local() { Some(self.def_id_to_span[def_id]) } else { None }
+        if let Some(def_id) = def_id.as_local() {
+            Some(self.def_id_to_span[def_id])
+        } else {
+            None
+        }
     }
 
     /// Checks if an expression refers to a function marked with

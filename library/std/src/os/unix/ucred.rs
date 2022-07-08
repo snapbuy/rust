@@ -82,7 +82,11 @@ pub mod impl_bsd {
         unsafe {
             let ret = libc::getpeereid(socket.as_raw_fd(), &mut cred.uid, &mut cred.gid);
 
-            if ret == 0 { Ok(cred) } else { Err(io::Error::last_os_error()) }
+            if ret == 0 {
+                Ok(cred)
+            } else {
+                Err(io::Error::last_os_error())
+            }
         }
     }
 }

@@ -379,7 +379,11 @@ pub fn current_exe() -> io::Result<PathBuf> {
 
             // Prepend a current working directory to the path if
             // it doesn't contain an absolute pathname.
-            if filename[0] == b'/' { Ok(path) } else { getcwd().map(|cwd| cwd.join(path)) }
+            if filename[0] == b'/' {
+                Ok(path)
+            } else {
+                getcwd().map(|cwd| cwd.join(path))
+            }
         }
     }
 }

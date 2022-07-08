@@ -279,7 +279,11 @@ impl<'a> Resolver<'a> {
                 }
             }
             let usable = this.is_accessible_from(binding.vis, parent_scope.module);
-            if usable { Ok(binding) } else { Err((Determined, Weak::No)) }
+            if usable {
+                Ok(binding)
+            } else {
+                Err((Determined, Weak::No))
+            }
         };
 
         if record_used {

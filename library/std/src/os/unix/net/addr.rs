@@ -158,7 +158,11 @@ impl SocketAddr {
     /// ```
     #[stable(feature = "unix_socket", since = "1.10.0")]
     pub fn is_unnamed(&self) -> bool {
-        if let AddressKind::Unnamed = self.address() { true } else { false }
+        if let AddressKind::Unnamed = self.address() {
+            true
+        } else {
+            false
+        }
     }
 
     /// Returns the contents of this address if it is a `pathname` address.
@@ -193,7 +197,11 @@ impl SocketAddr {
     /// ```
     #[stable(feature = "unix_socket", since = "1.10.0")]
     pub fn as_pathname(&self) -> Option<&Path> {
-        if let AddressKind::Pathname(path) = self.address() { Some(path) } else { None }
+        if let AddressKind::Pathname(path) = self.address() {
+            Some(path)
+        } else {
+            None
+        }
     }
 
     fn address(&self) -> AddressKind<'_> {

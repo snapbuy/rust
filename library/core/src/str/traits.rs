@@ -398,11 +398,19 @@ unsafe impl SliceIndex<str> for ops::RangeInclusive<usize> {
     type Output = str;
     #[inline]
     fn get(self, slice: &str) -> Option<&Self::Output> {
-        if *self.end() == usize::MAX { None } else { self.into_slice_range().get(slice) }
+        if *self.end() == usize::MAX {
+            None
+        } else {
+            self.into_slice_range().get(slice)
+        }
     }
     #[inline]
     fn get_mut(self, slice: &mut str) -> Option<&mut Self::Output> {
-        if *self.end() == usize::MAX { None } else { self.into_slice_range().get_mut(slice) }
+        if *self.end() == usize::MAX {
+            None
+        } else {
+            self.into_slice_range().get_mut(slice)
+        }
     }
     #[inline]
     unsafe fn get_unchecked(self, slice: *const str) -> *const Self::Output {
@@ -449,11 +457,19 @@ unsafe impl SliceIndex<str> for ops::RangeToInclusive<usize> {
     type Output = str;
     #[inline]
     fn get(self, slice: &str) -> Option<&Self::Output> {
-        if self.end == usize::MAX { None } else { (..self.end + 1).get(slice) }
+        if self.end == usize::MAX {
+            None
+        } else {
+            (..self.end + 1).get(slice)
+        }
     }
     #[inline]
     fn get_mut(self, slice: &mut str) -> Option<&mut Self::Output> {
-        if self.end == usize::MAX { None } else { (..self.end + 1).get_mut(slice) }
+        if self.end == usize::MAX {
+            None
+        } else {
+            (..self.end + 1).get_mut(slice)
+        }
     }
     #[inline]
     unsafe fn get_unchecked(self, slice: *const str) -> *const Self::Output {

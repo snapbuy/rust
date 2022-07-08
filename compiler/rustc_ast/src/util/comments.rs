@@ -46,7 +46,11 @@ pub fn beautify_doc_string(data: Symbol) -> Symbol {
             j -= 1;
         }
 
-        if i != 0 || j != lines.len() { Some((i, j)) } else { None }
+        if i != 0 || j != lines.len() {
+            Some((i, j))
+        } else {
+            None
+        }
     }
 
     fn get_horizontal_trim(lines: &[&str]) -> Option<usize> {

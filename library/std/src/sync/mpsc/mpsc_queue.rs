@@ -98,7 +98,11 @@ impl<T> Queue<T> {
                 return Data(ret);
             }
 
-            if self.head.load(Ordering::Acquire) == tail { Empty } else { Inconsistent }
+            if self.head.load(Ordering::Acquire) == tail {
+                Empty
+            } else {
+                Inconsistent
+            }
         }
     }
 }

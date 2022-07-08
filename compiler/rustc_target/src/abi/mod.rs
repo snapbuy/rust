@@ -343,7 +343,11 @@ impl Size {
 
         let bytes = self.bytes().checked_add(offset.bytes())?;
 
-        if bytes < dl.obj_size_bound() { Some(Size::from_bytes(bytes)) } else { None }
+        if bytes < dl.obj_size_bound() {
+            Some(Size::from_bytes(bytes))
+        } else {
+            None
+        }
     }
 
     #[inline]
@@ -351,7 +355,11 @@ impl Size {
         let dl = cx.data_layout();
 
         let bytes = self.bytes().checked_mul(count)?;
-        if bytes < dl.obj_size_bound() { Some(Size::from_bytes(bytes)) } else { None }
+        if bytes < dl.obj_size_bound() {
+            Some(Size::from_bytes(bytes))
+        } else {
+            None
+        }
     }
 
     /// Truncates `value` to `self` bits and then sign-extends it to 128 bits
@@ -948,7 +956,11 @@ pub struct Niche {
 impl Niche {
     pub fn from_scalar<C: HasDataLayout>(cx: &C, offset: Size, scalar: Scalar) -> Option<Self> {
         let niche = Niche { offset, scalar };
-        if niche.available(cx) > 0 { Some(niche) } else { None }
+        if niche.available(cx) > 0 {
+            Some(niche)
+        } else {
+            None
+        }
     }
 
     pub fn available<C: HasDataLayout>(&self, cx: &C) -> u128 {

@@ -62,7 +62,11 @@ pub fn find_best_match_for_name(
         .iter()
         .filter_map(|&name| {
             let dist = lev_distance(lookup, &name.as_str());
-            if dist <= max_dist { Some((name, dist)) } else { None }
+            if dist <= max_dist {
+                Some((name, dist))
+            } else {
+                None
+            }
         })
         // Here we are collecting the next structure:
         // (case_insensitive_match, (levenshtein_match, levenshtein_distance))

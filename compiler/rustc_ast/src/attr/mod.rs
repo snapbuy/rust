@@ -163,7 +163,11 @@ impl Attribute {
 impl MetaItem {
     /// For a single-segment meta item, returns its name; otherwise, returns `None`.
     pub fn ident(&self) -> Option<Ident> {
-        if self.path.segments.len() == 1 { Some(self.path.segments[0].ident) } else { None }
+        if self.path.segments.len() == 1 {
+            Some(self.path.segments[0].ident)
+        } else {
+            None
+        }
     }
     pub fn name_or_empty(&self) -> Symbol {
         self.ident().unwrap_or_else(Ident::invalid).name
@@ -474,14 +478,12 @@ impl MetaItemKind {
                     }
                     tokens.extend(item.token_trees_and_spacings())
                 }
-                vec![
-                    TokenTree::Delimited(
-                        DelimSpan::from_single(span),
-                        token::Paren,
-                        TokenStream::new(tokens),
-                    )
-                    .into(),
-                ]
+                vec![TokenTree::Delimited(
+                    DelimSpan::from_single(span),
+                    token::Paren,
+                    TokenStream::new(tokens),
+                )
+                .into()]
             }
         }
     }

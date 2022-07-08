@@ -67,7 +67,11 @@ impl<'mir, 'tcx: 'mir, M: Machine<'mir, 'tcx>> InterpCx<'mir, 'tcx, M> {
             .iter()
             .enumerate() // remember the original position
             .filter_map(|(i, method)| {
-                if let Some((def_id, substs)) = method { Some((i, def_id, substs)) } else { None }
+                if let Some((def_id, substs)) = method {
+                    Some((i, def_id, substs))
+                } else {
+                    None
+                }
             })
             .map(|(i, def_id, substs)| {
                 let instance =

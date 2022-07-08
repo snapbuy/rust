@@ -104,11 +104,9 @@ fn test_eq_ignore_ascii_case() {
     for i in 0..501 {
         let lower =
             if 'A' as u32 <= i && i <= 'Z' as u32 { i + 'a' as u32 - 'A' as u32 } else { i };
-        assert!(
-            (from_u32(i).unwrap())
-                .to_string()
-                .eq_ignore_ascii_case(&from_u32(lower).unwrap().to_string())
-        );
+        assert!((from_u32(i).unwrap())
+            .to_string()
+            .eq_ignore_ascii_case(&from_u32(lower).unwrap().to_string()));
     }
 }
 

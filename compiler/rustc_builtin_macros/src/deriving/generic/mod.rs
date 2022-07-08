@@ -992,7 +992,7 @@ impl<'a> MethodDef<'a> {
         use_temporaries: bool,
     ) -> P<Expr> {
         let mut raw_fields = Vec::new(); // Vec<[fields of self],
-        // [fields of next Self arg], [etc]>
+                                         // [fields of next Self arg], [etc]>
         let mut patterns = Vec::new();
         for i in 0..self_args.len() {
             let struct_path = cx.path(trait_.span, vec![type_ident]);

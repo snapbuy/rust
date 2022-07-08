@@ -176,7 +176,11 @@ impl<T, A: Allocator> Iterator for IntoIter<T, A> {
         // that `T: Copy` so reading elements from the buffer doesn't invalidate
         // them for `Drop`.
         unsafe {
-            if mem::size_of::<T>() == 0 { mem::zeroed() } else { ptr::read(self.ptr.add(i)) }
+            if mem::size_of::<T>() == 0 {
+                mem::zeroed()
+            } else {
+                ptr::read(self.ptr.add(i))
+            }
         }
     }
 }

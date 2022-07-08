@@ -1281,7 +1281,11 @@ impl<'a> Formatter<'a> {
             if let Some(c) = sign {
                 f.buf.write_char(c)?;
             }
-            if let Some(prefix) = prefix { f.buf.write_str(prefix) } else { Ok(()) }
+            if let Some(prefix) = prefix {
+                f.buf.write_str(prefix)
+            } else {
+                Ok(())
+            }
         }
 
         // The `width` field is more of a `min-width` parameter at this point.

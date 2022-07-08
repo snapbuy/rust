@@ -119,7 +119,11 @@ impl<T: ?Sized> *const T {
     pub unsafe fn as_ref<'a>(self) -> Option<&'a T> {
         // SAFETY: the caller must guarantee that `self` is valid
         // for a reference if it isn't null.
-        if self.is_null() { None } else { unsafe { Some(&*self) } }
+        if self.is_null() {
+            None
+        } else {
+            unsafe { Some(&*self) }
+        }
     }
 
     /// Returns `None` if the pointer is null, or else returns a shared reference to
@@ -169,7 +173,11 @@ impl<T: ?Sized> *const T {
     {
         // SAFETY: the caller must guarantee that `self` meets all the
         // requirements for a reference.
-        if self.is_null() { None } else { Some(unsafe { &*(self as *const MaybeUninit<T>) }) }
+        if self.is_null() {
+            None
+        } else {
+            Some(unsafe { &*(self as *const MaybeUninit<T>) })
+        }
     }
 
     /// Calculates the offset from a pointer.

@@ -306,7 +306,11 @@ impl<'a, 'b> visit::Visitor<'a> for DefCollector<'a, 'b> {
     }
 
     fn visit_arm(&mut self, arm: &'a Arm) {
-        if arm.is_placeholder { self.visit_macro_invoc(arm.id) } else { visit::walk_arm(self, arm) }
+        if arm.is_placeholder {
+            self.visit_macro_invoc(arm.id)
+        } else {
+            visit::walk_arm(self, arm)
+        }
     }
 
     fn visit_expr_field(&mut self, f: &'a ExprField) {

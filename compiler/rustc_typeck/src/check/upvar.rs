@@ -1003,12 +1003,9 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
                 assert_eq!(def.variants.len(), 1);
 
                 // Only Field projections can be applied to a non-box Adt.
-                assert!(
-                    captured_by_move_projs.iter().all(|projs| matches!(
-                        projs.first().unwrap().kind,
-                        ProjectionKind::Field(..)
-                    ))
-                );
+                assert!(captured_by_move_projs
+                    .iter()
+                    .all(|projs| matches!(projs.first().unwrap().kind, ProjectionKind::Field(..))));
                 def.variants.get(VariantIdx::new(0)).unwrap().fields.iter().enumerate().any(
                     |(i, field)| {
                         let paths_using_field = captured_by_move_projs
@@ -1017,7 +1014,11 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
                                 if let ProjectionKind::Field(field_idx, _) =
                                     projs.first().unwrap().kind
                                 {
-                                    if (field_idx as usize) == i { Some(&projs[1..]) } else { None }
+                                    if (field_idx as usize) == i {
+                                        Some(&projs[1..])
+                                    } else {
+                                        None
+                                    }
                                 } else {
                                     unreachable!();
                                 }
@@ -1037,12 +1038,9 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
 
             ty::Tuple(..) => {
                 // Only Field projections can be applied to a tuple.
-                assert!(
-                    captured_by_move_projs.iter().all(|projs| matches!(
-                        projs.first().unwrap().kind,
-                        ProjectionKind::Field(..)
-                    ))
-                );
+                assert!(captured_by_move_projs
+                    .iter()
+                    .all(|projs| matches!(projs.first().unwrap().kind, ProjectionKind::Field(..))));
 
                 base_path_ty.tuple_fields().enumerate().any(|(i, element_ty)| {
                     let paths_using_field = captured_by_move_projs
@@ -1050,7 +1048,11 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
                         .filter_map(|projs| {
                             if let ProjectionKind::Field(field_idx, _) = projs.first().unwrap().kind
                             {
-                                if (field_idx as usize) == i { Some(&projs[1..]) } else { None }
+                                if (field_idx as usize) == i {
+                                    Some(&projs[1..])
+                                } else {
+                                    None
+                                }
                             } else {
                                 unreachable!();
                             }

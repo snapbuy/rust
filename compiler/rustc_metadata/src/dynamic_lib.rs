@@ -190,6 +190,10 @@ mod dl {
     }
 
     fn ptr_result<T>(ptr: *mut T) -> Result<*mut T, String> {
-        if ptr.is_null() { Err(io::Error::last_os_error().to_string()) } else { Ok(ptr) }
+        if ptr.is_null() {
+            Err(io::Error::last_os_error().to_string())
+        } else {
+            Ok(ptr)
+        }
     }
 }

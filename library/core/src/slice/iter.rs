@@ -401,7 +401,11 @@ where
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.finished { (0, Some(0)) } else { (1, Some(self.v.len() + 1)) }
+        if self.finished {
+            (0, Some(0))
+        } else {
+            (1, Some(self.v.len() + 1))
+        }
     }
 }
 
@@ -526,7 +530,11 @@ where
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.finished { (0, Some(0)) } else { (1, Some(self.v.len() + 1)) }
+        if self.finished {
+            (0, Some(0))
+        } else {
+            (1, Some(self.v.len() + 1))
+        }
     }
 }
 
@@ -2981,7 +2989,11 @@ where
             let mut len = 1;
             let mut iter = self.slice.windows(2);
             while let Some([l, r]) = iter.next() {
-                if (self.predicate)(l, r) { len += 1 } else { break }
+                if (self.predicate)(l, r) {
+                    len += 1
+                } else {
+                    break;
+                }
             }
             let (head, tail) = self.slice.split_at(len);
             self.slice = tail;
@@ -2991,7 +3003,11 @@ where
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.slice.is_empty() { (0, Some(0)) } else { (1, Some(self.slice.len())) }
+        if self.slice.is_empty() {
+            (0, Some(0))
+        } else {
+            (1, Some(self.slice.len()))
+        }
     }
 
     #[inline]
@@ -3013,7 +3029,11 @@ where
             let mut len = 1;
             let mut iter = self.slice.windows(2);
             while let Some([l, r]) = iter.next_back() {
-                if (self.predicate)(l, r) { len += 1 } else { break }
+                if (self.predicate)(l, r) {
+                    len += 1
+                } else {
+                    break;
+                }
             }
             let (head, tail) = self.slice.split_at(self.slice.len() - len);
             self.slice = head;
@@ -3067,7 +3087,11 @@ where
             let mut len = 1;
             let mut iter = self.slice.windows(2);
             while let Some([l, r]) = iter.next() {
-                if (self.predicate)(l, r) { len += 1 } else { break }
+                if (self.predicate)(l, r) {
+                    len += 1
+                } else {
+                    break;
+                }
             }
             let slice = mem::take(&mut self.slice);
             let (head, tail) = slice.split_at_mut(len);
@@ -3078,7 +3102,11 @@ where
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.slice.is_empty() { (0, Some(0)) } else { (1, Some(self.slice.len())) }
+        if self.slice.is_empty() {
+            (0, Some(0))
+        } else {
+            (1, Some(self.slice.len()))
+        }
     }
 
     #[inline]
@@ -3100,7 +3128,11 @@ where
             let mut len = 1;
             let mut iter = self.slice.windows(2);
             while let Some([l, r]) = iter.next_back() {
-                if (self.predicate)(l, r) { len += 1 } else { break }
+                if (self.predicate)(l, r) {
+                    len += 1
+                } else {
+                    break;
+                }
             }
             let slice = mem::take(&mut self.slice);
             let (head, tail) = slice.split_at_mut(slice.len() - len);

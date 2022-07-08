@@ -906,7 +906,7 @@ extern "system" {
     ) -> BOOL;
     pub fn CloseHandle(hObject: HANDLE) -> BOOL;
     pub fn MoveFileExW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, dwFlags: DWORD)
-    -> BOOL;
+        -> BOOL;
     pub fn SetFilePointerEx(
         hFile: HANDLE,
         liDistanceToMove: LARGE_INTEGER,

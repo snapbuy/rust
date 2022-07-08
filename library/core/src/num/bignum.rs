@@ -38,7 +38,7 @@ pub trait FullOps: Sized {
     /// Returns `(quo, rem)` such that `borrow * 2^W + self = quo * other + rem`
     /// and `0 <= rem < other`, where `W` is the number of bits in `Self`.
     fn full_div_rem(self, other: Self, borrow: Self)
-    -> (Self /* quotient */, Self /* remainder */);
+        -> (Self /* quotient */, Self /* remainder */);
 }
 
 macro_rules! impl_full_ops {

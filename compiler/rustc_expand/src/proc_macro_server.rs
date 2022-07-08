@@ -516,7 +516,11 @@ impl server::Punct for Rustc<'_> {
         punct.ch
     }
     fn spacing(&mut self, punct: Self::Punct) -> Spacing {
-        if punct.joint { Spacing::Joint } else { Spacing::Alone }
+        if punct.joint {
+            Spacing::Joint
+        } else {
+            Spacing::Alone
+        }
     }
     fn span(&mut self, punct: Self::Punct) -> Self::Span {
         punct.span

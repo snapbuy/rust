@@ -64,7 +64,11 @@ pub fn digits_to_big(integral: &[u8], fractional: &[u8]) -> Big {
 pub fn to_u64(x: &Big) -> u64 {
     assert!(x.bit_length() < 64);
     let d = x.digits();
-    if d.len() < 2 { d[0] as u64 } else { (d[1] as u64) << 32 | d[0] as u64 }
+    if d.len() < 2 {
+        d[0] as u64
+    } else {
+        (d[1] as u64) << 32 | d[0] as u64
+    }
 }
 
 /// Extracts a range of bits.

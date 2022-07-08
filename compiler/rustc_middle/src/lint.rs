@@ -351,7 +351,8 @@ pub fn struct_lint_level<'s, 'd>(
         err.code(DiagnosticId::Lint { name, has_future_breakage });
 
         if let Some(future_incompatible) = future_incompatible {
-            const STANDARD_MESSAGE: &str = "this was previously accepted by the compiler but is being phased out; \
+            const STANDARD_MESSAGE: &str =
+                "this was previously accepted by the compiler but is being phased out; \
                  it will become a hard error";
 
             let explanation = if lint_id == LintId::of(builtin::UNSTABLE_NAME_COLLISIONS) {

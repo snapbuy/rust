@@ -506,11 +506,19 @@ impl ExitStatus {
     }
 
     pub fn code(&self) -> Option<i32> {
-        if self.exited() { Some(libc::WEXITSTATUS(self.0)) } else { None }
+        if self.exited() {
+            Some(libc::WEXITSTATUS(self.0))
+        } else {
+            None
+        }
     }
 
     pub fn signal(&self) -> Option<i32> {
-        if libc::WIFSIGNALED(self.0) { Some(libc::WTERMSIG(self.0)) } else { None }
+        if libc::WIFSIGNALED(self.0) {
+            Some(libc::WTERMSIG(self.0))
+        } else {
+            None
+        }
     }
 
     pub fn core_dumped(&self) -> bool {
@@ -518,7 +526,11 @@ impl ExitStatus {
     }
 
     pub fn stopped_signal(&self) -> Option<i32> {
-        if libc::WIFSTOPPED(self.0) { Some(libc::WSTOPSIG(self.0)) } else { None }
+        if libc::WIFSTOPPED(self.0) {
+            Some(libc::WSTOPSIG(self.0))
+        } else {
+            None
+        }
     }
 
     pub fn continued(&self) -> bool {

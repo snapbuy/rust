@@ -136,7 +136,11 @@ pub struct MainDefinition {
 
 impl MainDefinition {
     pub fn opt_fn_def_id(self) -> Option<DefId> {
-        if let Res::Def(DefKind::Fn, def_id) = self.res { Some(def_id) } else { None }
+        if let Res::Def(DefKind::Fn, def_id) = self.res {
+            Some(def_id)
+        } else {
+            None
+        }
     }
 }
 
@@ -1045,7 +1049,11 @@ impl WithOptConstParam<LocalDefId> {
     }
 
     pub fn def_id_for_type_of(self) -> DefId {
-        if let Some(did) = self.const_param_did { did } else { self.did.to_def_id() }
+        if let Some(did) = self.const_param_did {
+            did
+        } else {
+            self.did.to_def_id()
+        }
     }
 }
 

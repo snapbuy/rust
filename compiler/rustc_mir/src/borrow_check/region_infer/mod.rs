@@ -2114,7 +2114,11 @@ impl<'tcx> RegionInferenceContext<'tcx> {
 
             if categorized_path[i].0 == ConstraintCategory::Return(ReturnConstraint::Normal) {
                 let field = categorized_path.iter().find_map(|p| {
-                    if let ConstraintCategory::ClosureUpvar(f) = p.0 { Some(f) } else { None }
+                    if let ConstraintCategory::ClosureUpvar(f) = p.0 {
+                        Some(f)
+                    } else {
+                        None
+                    }
                 });
 
                 if let Some(field) = field {

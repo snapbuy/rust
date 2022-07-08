@@ -157,7 +157,11 @@ where
     fn next_back_index(&self) -> usize {
         let rem = self.iter.len() % (self.step + 1);
         if self.first_take {
-            if rem == 0 { self.step } else { rem - 1 }
+            if rem == 0 {
+                self.step
+            } else {
+                rem - 1
+            }
         } else {
             rem
         }

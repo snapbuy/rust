@@ -784,7 +784,11 @@ where
     /// ```
     #[stable(feature = "rust1", since = "1.0.0")]
     pub fn is_subset(&self, other: &HashSet<T, S>) -> bool {
-        if self.len() <= other.len() { self.iter().all(|v| other.contains(v)) } else { false }
+        if self.len() <= other.len() {
+            self.iter().all(|v| other.contains(v))
+        } else {
+            false
+        }
     }
 
     /// Returns `true` if the set is a superset of another,

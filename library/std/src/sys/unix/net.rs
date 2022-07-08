@@ -402,7 +402,11 @@ impl Socket {
 
     pub fn take_error(&self) -> io::Result<Option<io::Error>> {
         let raw: c_int = getsockopt(self, libc::SOL_SOCKET, libc::SO_ERROR)?;
-        if raw == 0 { Ok(None) } else { Ok(Some(io::Error::from_raw_os_error(raw as i32))) }
+        if raw == 0 {
+            Ok(None)
+        } else {
+            Ok(Some(io::Error::from_raw_os_error(raw as i32)))
+        }
     }
 }
 

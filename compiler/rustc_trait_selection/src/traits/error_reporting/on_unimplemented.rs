@@ -109,7 +109,11 @@ impl<'a, 'tcx> InferCtxtExt<'tcx> for InferCtxt<'a, 'tcx> {
             }),
             hir::Node::Expr(hir::Expr { .. }) => {
                 let parent_hid = hir.get_parent_node(hir_id);
-                if parent_hid != hir_id { self.describe_enclosure(parent_hid) } else { None }
+                if parent_hid != hir_id {
+                    self.describe_enclosure(parent_hid)
+                } else {
+                    None
+                }
             }
             _ => None,
         }

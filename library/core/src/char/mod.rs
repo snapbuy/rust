@@ -297,7 +297,11 @@ impl Iterator for EscapeDefault {
             EscapeDefaultState::Char(c) => {
                 self.state = EscapeDefaultState::Done;
 
-                if n == 0 { Some(c) } else { None }
+                if n == 0 {
+                    Some(c)
+                } else {
+                    None
+                }
             }
             EscapeDefaultState::Done => None,
             EscapeDefaultState::Unicode(ref mut i) => i.nth(n),

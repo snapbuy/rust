@@ -67,7 +67,11 @@ impl<T: Ord> Ord for Governed<'_, T> {
     fn cmp(&self, other: &Self) -> Ordering {
         assert!(ptr::eq(self.1, other.1));
         let ord = self.0.cmp(&other.0);
-        if self.1.flipped.get() { ord.reverse() } else { ord }
+        if self.1.flipped.get() {
+            ord.reverse()
+        } else {
+            ord
+        }
     }
 }
 

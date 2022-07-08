@@ -33,7 +33,11 @@ impl Handle {
         unsafe {
             let event =
                 c::CreateEventW(ptr::null_mut(), manual as c::BOOL, init as c::BOOL, ptr::null());
-            if event.is_null() { Err(io::Error::last_os_error()) } else { Ok(Handle::new(event)) }
+            if event.is_null() {
+                Err(io::Error::last_os_error())
+            } else {
+                Ok(Handle::new(event))
+            }
         }
     }
 

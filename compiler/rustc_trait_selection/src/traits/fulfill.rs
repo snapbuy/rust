@@ -155,7 +155,11 @@ impl<'a, 'tcx> FulfillmentContext<'tcx> {
             errors.len()
         );
 
-        if errors.is_empty() { Ok(()) } else { Err(errors) }
+        if errors.is_empty() {
+            Ok(())
+        } else {
+            Err(errors)
+        }
     }
 }
 
@@ -226,7 +230,11 @@ impl<'tcx> TraitEngine<'tcx> for FulfillmentContext<'tcx> {
             .into_iter()
             .map(to_fulfillment_error)
             .collect();
-        if errors.is_empty() { Ok(()) } else { Err(errors) }
+        if errors.is_empty() {
+            Ok(())
+        } else {
+            Err(errors)
+        }
     }
 
     fn select_where_possible(
@@ -380,7 +388,7 @@ impl<'a, 'b, 'tcx> FulfillProcessor<'a, 'b, 'tcx> {
                 | ty::PredicateKind::ConstEquate(..) => {
                     let pred = infcx.replace_bound_vars_with_placeholders(binder);
                     ProcessResult::Changed(mk_pending(vec![
-                        obligation.with(pred.to_predicate(self.selcx.tcx())),
+                        obligation.with(pred.to_predicate(self.selcx.tcx()))
                     ]))
                 }
                 ty::PredicateKind::TypeWellFormedFromEnv(..) => {

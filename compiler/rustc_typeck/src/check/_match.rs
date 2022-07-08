@@ -631,7 +631,11 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
                 }
                 // If all the obligations hold (or there are no obligations) the tail expression
                 // we can suggest to return a boxed trait object instead of an opaque type.
-                if suggest_box { self.ret_type_span } else { None }
+                if suggest_box {
+                    self.ret_type_span
+                } else {
+                    None
+                }
             }
             _ => None,
         }

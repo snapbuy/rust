@@ -160,7 +160,11 @@ pub fn filename_for_input(
         CrateType::Executable => {
             let suffix = &sess.target.exe_suffix;
             let out_filename = outputs.path(OutputType::Exe);
-            if suffix.is_empty() { out_filename } else { out_filename.with_extension(&suffix[1..]) }
+            if suffix.is_empty() {
+                out_filename
+            } else {
+                out_filename.with_extension(&suffix[1..])
+            }
         }
     }
 }
@@ -175,7 +179,11 @@ pub fn filename_for_input(
 /// interaction with Rust code through static library is the only
 /// option for now
 pub fn default_output_for_target(sess: &Session) -> CrateType {
-    if !sess.target.executables { CrateType::Staticlib } else { CrateType::Executable }
+    if !sess.target.executables {
+        CrateType::Staticlib
+    } else {
+        CrateType::Executable
+    }
 }
 
 /// Checks if target supports crate_type as output

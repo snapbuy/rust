@@ -110,7 +110,11 @@ where
     T: Ord,
 {
     fn cmp(&self, other: &List<T>) -> Ordering {
-        if self == other { Ordering::Equal } else { <[T] as Ord>::cmp(&**self, &**other) }
+        if self == other {
+            Ordering::Equal
+        } else {
+            <[T] as Ord>::cmp(&**self, &**other)
+        }
     }
 }
 

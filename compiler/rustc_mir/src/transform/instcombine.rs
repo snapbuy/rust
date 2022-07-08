@@ -79,7 +79,11 @@ impl<'tcx, 'a> InstCombineContext<'tcx, 'a> {
 
     fn try_eval_bool(&self, a: &Operand<'_>) -> Option<bool> {
         let a = a.constant()?;
-        if a.literal.ty().is_bool() { a.literal.try_to_bool() } else { None }
+        if a.literal.ty().is_bool() {
+            a.literal.try_to_bool()
+        } else {
+            None
+        }
     }
 
     /// Transform "&(*a)" ==> "a".

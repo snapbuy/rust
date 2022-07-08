@@ -161,9 +161,17 @@ pub fn fast_path<T: RawFloat>(integral: &[u8], fractional: &[u8], e: i64) -> Opt
 pub fn bellerophon<T: RawFloat>(f: &Big, e: i16) -> T {
     let slop = if f <= &Big::from_u64(T::MAX_SIG) {
         // The cases abs(e) < log5(2^N) are in fast_path()
-        if e >= 0 { 0 } else { 3 }
+        if e >= 0 {
+            0
+        } else {
+            3
+        }
     } else {
-        if e >= 0 { 1 } else { 4 }
+        if e >= 0 {
+            1
+        } else {
+            4
+        }
     };
     let z = rawfp::big_to_fp(f).mul(&power_of_ten(e)).normalize();
     let exp_p_n = 1 << (P - T::SIG_BITS as u32);

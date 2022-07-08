@@ -685,7 +685,11 @@ fn compare_number_of_generics<'tcx>(
         }
     }
 
-    if err_occurred { Err(ErrorReported) } else { Ok(()) }
+    if err_occurred {
+        Err(ErrorReported)
+    } else {
+        Ok(())
+    }
 }
 
 fn compare_number_of_method_arguments<'tcx>(
@@ -931,7 +935,11 @@ fn compare_synthetic_generics<'tcx>(
             error_found = true;
         }
     }
-    if error_found { Err(ErrorReported) } else { Ok(()) }
+    if error_found {
+        Err(ErrorReported)
+    } else {
+        Ok(())
+    }
 }
 
 crate fn compare_const_impl<'tcx>(

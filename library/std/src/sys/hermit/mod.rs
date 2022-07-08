@@ -154,5 +154,9 @@ pub fn decode_error_kind(errno: i32) -> ErrorKind {
 }
 
 pub fn cvt(result: i32) -> crate::io::Result<usize> {
-    if result < 0 { Err(crate::io::Error::from_raw_os_error(-result)) } else { Ok(result as usize) }
+    if result < 0 {
+        Err(crate::io::Error::from_raw_os_error(-result))
+    } else {
+        Ok(result as usize)
+    }
 }

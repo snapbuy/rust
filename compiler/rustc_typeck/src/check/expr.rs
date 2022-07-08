@@ -799,7 +799,11 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
         }
 
         let result_ty = coerce.complete(self);
-        if cond_ty.references_error() { self.tcx.ty_error() } else { result_ty }
+        if cond_ty.references_error() {
+            self.tcx.ty_error()
+        } else {
+            result_ty
+        }
     }
 
     /// Type check assignment expression `expr` of form `lhs = rhs`.

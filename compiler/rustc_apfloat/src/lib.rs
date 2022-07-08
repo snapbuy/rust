@@ -340,10 +340,18 @@ pub trait Float:
     }
 
     fn abs(self) -> Self {
-        if self.is_negative() { -self } else { self }
+        if self.is_negative() {
+            -self
+        } else {
+            self
+        }
     }
     fn copy_sign(self, rhs: Self) -> Self {
-        if self.is_negative() != rhs.is_negative() { -self } else { self }
+        if self.is_negative() != rhs.is_negative() {
+            -self
+        } else {
+            self
+        }
     }
 
     // Conversions

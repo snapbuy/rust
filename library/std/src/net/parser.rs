@@ -127,7 +127,11 @@ impl<'a> Parser<'a> {
                 }
             }
 
-            if digit_count == 0 { None } else { Some(result) }
+            if digit_count == 0 {
+                None
+            } else {
+                Some(result)
+            }
         })
     }
 

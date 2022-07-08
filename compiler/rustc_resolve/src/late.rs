@@ -2009,13 +2009,21 @@ impl<'a: 'ast, 'b, 'ast> LateResolutionVisitor<'a, 'b, 'ast> {
             None,
             span,
         );
-        if let Some(LexicalScopeBinding::Res(res)) = binding { res != Res::Err } else { false }
+        if let Some(LexicalScopeBinding::Res(res)) = binding {
+            res != Res::Err
+        } else {
+            false
+        }
     }
 
     fn self_value_is_available(&mut self, self_span: Span, path_span: Span) -> bool {
         let ident = Ident::new(kw::SelfLower, self_span);
         let binding = self.resolve_ident_in_lexical_scope(ident, ValueNS, None, path_span);
-        if let Some(LexicalScopeBinding::Res(res)) = binding { res != Res::Err } else { false }
+        if let Some(LexicalScopeBinding::Res(res)) = binding {
+            res != Res::Err
+        } else {
+            false
+        }
     }
 
     /// A wrapper around [`Resolver::report_error`].

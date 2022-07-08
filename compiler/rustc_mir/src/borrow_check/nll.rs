@@ -441,7 +441,11 @@ pub trait ToRegionVid {
 
 impl<'tcx> ToRegionVid for &'tcx RegionKind {
     fn to_region_vid(self) -> RegionVid {
-        if let ty::ReVar(vid) = self { *vid } else { bug!("region is not an ReVar: {:?}", self) }
+        if let ty::ReVar(vid) = self {
+            *vid
+        } else {
+            bug!("region is not an ReVar: {:?}", self)
+        }
     }
 }
 

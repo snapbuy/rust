@@ -125,7 +125,11 @@ where
     I: DoubleEndedIterator + ExactSizeIterator,
 {
     fn next_back(&mut self) -> Option<Self::Item> {
-        if self.len() > 0 { self.iter.next_back() } else { None }
+        if self.len() > 0 {
+            self.iter.next_back()
+        } else {
+            None
+        }
     }
 
     #[inline]
@@ -155,12 +159,20 @@ where
             move |acc, x| {
                 n -= 1;
                 let r = fold(acc, x);
-                if n == 0 { ControlFlow::Break(r) } else { ControlFlow::from_try(r) }
+                if n == 0 {
+                    ControlFlow::Break(r)
+                } else {
+                    ControlFlow::from_try(r)
+                }
             }
         }
 
         let n = self.len();
-        if n == 0 { try { init } } else { self.iter.try_rfold(init, check(n, fold)).into_try() }
+        if n == 0 {
+            try { init }
+        } else {
+            self.iter.try_rfold(init, check(n, fold)).into_try()
+        }
     }
 
     fn rfold<Acc, Fold>(mut self, init: Acc, fold: Fold) -> Acc

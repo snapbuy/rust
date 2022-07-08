@@ -994,7 +994,11 @@ impl<'a, 'tcx> InferCtxtExt<'tcx> for InferCtxt<'a, 'tcx> {
             _ => return None,
         };
 
-        if let hir::FnRetTy::Return(ret_ty) = sig.decl.output { Some(ret_ty.span) } else { None }
+        if let hir::FnRetTy::Return(ret_ty) = sig.decl.output {
+            Some(ret_ty.span)
+        } else {
+            None
+        }
     }
 
     /// If all conditions are met to identify a returned `dyn Trait`, suggest using `impl Trait` if

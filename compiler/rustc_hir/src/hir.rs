@@ -541,7 +541,11 @@ pub struct WhereClause<'hir> {
 
 impl WhereClause<'_> {
     pub fn span(&self) -> Option<Span> {
-        if self.predicates.is_empty() { None } else { Some(self.span) }
+        if self.predicates.is_empty() {
+            None
+        } else {
+            Some(self.span)
+        }
     }
 
     /// The `WhereClause` under normal circumstances points at either the predicates or the empty

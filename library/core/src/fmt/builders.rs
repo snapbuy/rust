@@ -236,7 +236,11 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     pub fn finish(&mut self) -> fmt::Result {
         if self.has_fields {
             self.result = self.result.and_then(|_| {
-                if self.is_pretty() { self.fmt.write_str("}") } else { self.fmt.write_str(" }") }
+                if self.is_pretty() {
+                    self.fmt.write_str("}")
+                } else {
+                    self.fmt.write_str(" }")
+                }
             });
         }
         self.result

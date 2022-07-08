@@ -18,11 +18,11 @@ pub struct GraphvizWriter<
 }
 
 impl<
-    'a,
-    G: graph::DirectedGraph + graph::WithSuccessors + graph::WithStartNode + graph::WithNumNodes,
-    NodeContentFn: Fn(<G as graph::DirectedGraph>::Node) -> Vec<String>,
-    EdgeLabelsFn: Fn(<G as graph::DirectedGraph>::Node) -> Vec<String>,
-> GraphvizWriter<'a, G, NodeContentFn, EdgeLabelsFn>
+        'a,
+        G: graph::DirectedGraph + graph::WithSuccessors + graph::WithStartNode + graph::WithNumNodes,
+        NodeContentFn: Fn(<G as graph::DirectedGraph>::Node) -> Vec<String>,
+        EdgeLabelsFn: Fn(<G as graph::DirectedGraph>::Node) -> Vec<String>,
+    > GraphvizWriter<'a, G, NodeContentFn, EdgeLabelsFn>
 {
     pub fn new(
         graph: &'a G,
@@ -51,8 +51,8 @@ impl<
     {
         let kind = if self.is_subgraph { "subgraph" } else { "digraph" };
         let cluster = if self.is_subgraph { "cluster_" } else { "" }; // Print border around graph
-        // FIXME(richkadel): If/when migrating the MIR graphviz to this generic implementation,
-        // prepend "Mir_" to the graphviz_safe_def_name(def_id)
+                                                                      // FIXME(richkadel): If/when migrating the MIR graphviz to this generic implementation,
+                                                                      // prepend "Mir_" to the graphviz_safe_def_name(def_id)
         writeln!(w, "{} {}{} {{", kind, cluster, self.graphviz_name)?;
 
         // Global graph properties

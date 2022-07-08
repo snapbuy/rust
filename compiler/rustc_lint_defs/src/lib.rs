@@ -14,7 +14,11 @@ pub mod builtin;
 #[macro_export]
 macro_rules! pluralize {
     ($x:expr) => {
-        if $x != 1 { "s" } else { "" }
+        if $x != 1 {
+            "s"
+        } else {
+            ""
+        }
     };
 }
 

@@ -1786,9 +1786,7 @@ impl<'a, 'tcx> InferCtxtPrivExt<'tcx> for InferCtxt<'a, 'tcx> {
             }
             match node {
                 hir::Node::Item(
-                    item
-                    @
-                    hir::Item {
+                    item @ hir::Item {
                         kind:
                             hir::ItemKind::Enum(..)
                             | hir::ItemKind::Struct(..)

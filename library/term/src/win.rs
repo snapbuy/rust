@@ -73,7 +73,11 @@ fn color_to_bits(color: color::Color) -> u16 {
         _ => unreachable!(),
     };
 
-    if color >= 8 { bits | 0x8 } else { bits }
+    if color >= 8 {
+        bits | 0x8
+    } else {
+        bits
+    }
 }
 
 fn bits_to_color(bits: u16) -> color::Color {

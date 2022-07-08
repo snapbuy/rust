@@ -49,7 +49,11 @@ impl<'a> FileSearch<'a> {
         for search_path in self.search_paths() {
             debug!("searching {}", search_path.dir.display());
             fn is_rlib(spf: &SearchPathFile) -> bool {
-                if let Some(f) = &spf.file_name_str { f.ends_with(".rlib") } else { false }
+                if let Some(f) = &spf.file_name_str {
+                    f.ends_with(".rlib")
+                } else {
+                    false
+                }
             }
             // Reading metadata out of rlibs is faster, and if we find both
             // an rlib and a dylib we only read one of the files of
@@ -97,7 +101,11 @@ impl<'a> FileSearch<'a> {
             Path::new("bin"),
         ])
         .collect::<PathBuf>();
-        if self_contained { vec![p.clone(), p.join("self-contained")] } else { vec![p] }
+        if self_contained {
+            vec![p.clone(), p.join("self-contained")]
+        } else {
+            vec![p]
+        }
     }
 }
 
@@ -157,7 +165,11 @@ pub fn get_or_default_sysroot() -> PathBuf {
                 // Look for the target rustlib directory in the suspected sysroot.
                 let mut rustlib_path = rustc_target::target_rustlib_path(&p, "dummy");
                 rustlib_path.pop(); // pop off the dummy target.
-                if rustlib_path.exists() { Some(p) } else { None }
+                if rustlib_path.exists() {
+                    Some(p)
+                } else {
+                    None
+                }
             }
             None => None,
         }

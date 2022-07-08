@@ -311,7 +311,11 @@ pub fn set_alloc_error_hook(hook: fn(Layout)) {
 #[unstable(feature = "alloc_error_hook", issue = "51245")]
 pub fn take_alloc_error_hook() -> fn(Layout) {
     let hook = HOOK.swap(ptr::null_mut(), Ordering::SeqCst);
-    if hook.is_null() { default_alloc_error_hook } else { unsafe { mem::transmute(hook) } }
+    if hook.is_null() {
+        default_alloc_error_hook
+    } else {
+        unsafe { mem::transmute(hook) }
+    }
 }
 
 fn default_alloc_error_hook(layout: Layout) {

@@ -209,7 +209,11 @@ impl<T, ProducerAddition, ConsumerAddition> Queue<T, ProducerAddition, ConsumerA
         unsafe {
             let tail = *self.consumer.tail.get();
             let next = (*tail).next.load(Ordering::Acquire);
-            if next.is_null() { None } else { (*next).value.as_mut() }
+            if next.is_null() {
+                None
+            } else {
+                (*next).value.as_mut()
+            }
         }
     }
 

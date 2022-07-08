@@ -520,7 +520,11 @@ fn output_contains_path(output_paths: &[PathBuf], input_path: &PathBuf) -> bool 
         return false;
     }
     let check = |output_path: &PathBuf| {
-        if output_path.canonicalize().ok() == input_path { Some(()) } else { None }
+        if output_path.canonicalize().ok() == input_path {
+            Some(())
+        } else {
+            None
+        }
     };
     check_output(output_paths, check).is_some()
 }

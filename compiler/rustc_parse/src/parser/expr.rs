@@ -72,7 +72,11 @@ impl From<Option<AttrWrapper>> for LhsExpr {
     ///
     /// This conversion does not allocate.
     fn from(o: Option<AttrWrapper>) -> Self {
-        if let Some(attrs) = o { LhsExpr::AttributesParsed(attrs) } else { LhsExpr::NotYetParsed }
+        if let Some(attrs) = o {
+            LhsExpr::AttributesParsed(attrs)
+        } else {
+            LhsExpr::NotYetParsed
+        }
     }
 }
 

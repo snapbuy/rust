@@ -51,7 +51,11 @@ where
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.next.is_some() { (1, None) } else { (0, Some(0)) }
+        if self.next.is_some() {
+            (1, None)
+        } else {
+            (0, Some(0))
+        }
     }
 }
 

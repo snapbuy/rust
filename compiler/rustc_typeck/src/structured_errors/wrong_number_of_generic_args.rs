@@ -95,7 +95,11 @@ impl<'a, 'tcx> WrongNumberOfGenericArgs<'a, 'tcx> {
         def_id: DefId,
     ) -> Self {
         let angle_brackets = if gen_args.span_ext().is_none() {
-            if gen_args.is_empty() { AngleBrackets::Missing } else { AngleBrackets::Implied }
+            if gen_args.is_empty() {
+                AngleBrackets::Missing
+            } else {
+                AngleBrackets::Implied
+            }
         } else {
             AngleBrackets::Available
         };
@@ -120,7 +124,11 @@ impl<'a, 'tcx> WrongNumberOfGenericArgs<'a, 'tcx> {
     }
 
     fn kind(&self) -> String {
-        if self.missing_lifetimes() { "lifetime".to_string() } else { "generic".to_string() }
+        if self.missing_lifetimes() {
+            "lifetime".to_string()
+        } else {
+            "generic".to_string()
+        }
     }
 
     fn num_provided_args(&self) -> usize {

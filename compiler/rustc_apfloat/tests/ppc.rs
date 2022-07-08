@@ -499,14 +499,12 @@ fn ppc_double_double_is_denormal() {
 
 #[test]
 fn ppc_double_double_exact_inverse() {
-    assert!(
-        "2.0"
-            .parse::<DoubleDouble>()
-            .unwrap()
-            .get_exact_inverse()
-            .unwrap()
-            .bitwise_eq("0.5".parse::<DoubleDouble>().unwrap())
-    );
+    assert!("2.0"
+        .parse::<DoubleDouble>()
+        .unwrap()
+        .get_exact_inverse()
+        .unwrap()
+        .bitwise_eq("0.5".parse::<DoubleDouble>().unwrap()));
 }
 
 #[test]

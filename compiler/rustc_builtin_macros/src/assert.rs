@@ -152,5 +152,9 @@ fn parse_assert<'a>(
 
 fn parse_custom_message(parser: &mut Parser<'_>) -> Option<TokenStream> {
     let ts = parser.parse_tokens();
-    if !ts.is_empty() { Some(ts) } else { None }
+    if !ts.is_empty() {
+        Some(ts)
+    } else {
+        None
+    }
 }

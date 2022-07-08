@@ -256,7 +256,11 @@ impl DefId {
 
     #[inline]
     pub fn as_local(self) -> Option<LocalDefId> {
-        if self.is_local() { Some(LocalDefId { local_def_index: self.index }) } else { None }
+        if self.is_local() {
+            Some(LocalDefId { local_def_index: self.index })
+        } else {
+            None
+        }
     }
 
     #[inline]

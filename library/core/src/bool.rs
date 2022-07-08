@@ -15,7 +15,11 @@ impl bool {
     #[unstable(feature = "bool_to_option", issue = "64260")]
     #[inline]
     pub fn then_some<T>(self, t: T) -> Option<T> {
-        if self { Some(t) } else { None }
+        if self {
+            Some(t)
+        } else {
+            None
+        }
     }
 
     /// Returns `Some(f())` if the `bool` is `true`, or `None` otherwise.
@@ -29,6 +33,10 @@ impl bool {
     #[stable(feature = "lazy_bool_to_option", since = "1.50.0")]
     #[inline]
     pub fn then<T, F: FnOnce() -> T>(self, f: F) -> Option<T> {
-        if self { Some(f()) } else { None }
+        if self {
+            Some(f())
+        } else {
+            None
+        }
     }
 }

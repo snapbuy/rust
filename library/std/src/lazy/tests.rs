@@ -295,15 +295,13 @@ fn sync_once_cell_does_not_leak_partially_constructed_boxes() {
 
     for _ in 0..n_readers {
         let tx = tx.clone();
-        thread::spawn(move || {
-            loop {
-                if let Some(msg) = ONCE_CELL.get() {
-                    tx.send(msg).unwrap();
-                    break;
-                }
-                #[cfg(target_env = "sgx")]
-                crate::thread::yield_now();
+        thread::spawn(move || loop {
+            if let Some(msg) = ONCE_CELL.get() {
+                tx.send(msg).unwrap();
+                break;
             }
+            #[cfg(target_env = "sgx")]
+            crate::thread::yield_now();
         });
     }
     for _ in 0..n_writers {

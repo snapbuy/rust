@@ -126,7 +126,11 @@ impl Iterator for Toggle {
     }
 
     fn size_hint(&self) -> (usize, Option<usize>) {
-        if self.is_empty { (0, Some(0)) } else { (1, Some(1)) }
+        if self.is_empty {
+            (0, Some(0))
+        } else {
+            (1, Some(1))
+        }
     }
 }
 

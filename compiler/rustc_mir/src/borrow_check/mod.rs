@@ -1677,11 +1677,11 @@ impl<'cx, 'tcx> MirBorrowckCtxt<'cx, 'tcx> {
                 mpi,
             );
         } // Only query longest prefix with a MovePath, not further
-        // ancestors; dataflow recurs on children when parents
-        // move (to support partial (re)inits).
-        //
-        // (I.e., querying parents breaks scenario 7; but may want
-        // to do such a query based on partial-init feature-gate.)
+          // ancestors; dataflow recurs on children when parents
+          // move (to support partial (re)inits).
+          //
+          // (I.e., querying parents breaks scenario 7; but may want
+          // to do such a query based on partial-init feature-gate.)
     }
 
     /// Subslices correspond to multiple move paths, so we iterate through the

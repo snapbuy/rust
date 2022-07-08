@@ -215,7 +215,11 @@ impl<'tcx> Relate<'tcx> for abi::Abi {
         a: abi::Abi,
         b: abi::Abi,
     ) -> RelateResult<'tcx, abi::Abi> {
-        if a == b { Ok(a) } else { Err(TypeError::AbiMismatch(expected_found(relation, a, b))) }
+        if a == b {
+            Ok(a)
+        } else {
+            Err(TypeError::AbiMismatch(expected_found(relation, a, b)))
+        }
     }
 }
 
@@ -549,7 +553,11 @@ pub fn super_relate_consts<R: TypeRelation<'tcx>>(
         }
         _ => false,
     };
-    if is_match { Ok(a) } else { Err(TypeError::ConstMismatch(expected_found(relation, a, b))) }
+    if is_match {
+        Ok(a)
+    } else {
+        Err(TypeError::ConstMismatch(expected_found(relation, a, b)))
+    }
 }
 
 fn check_const_value_eq<R: TypeRelation<'tcx>>(

@@ -770,8 +770,8 @@ impl<'a, 'tcx> FnCtxt<'a, 'tcx> {
         &'b self,
         self_ty: ty::TyVid,
     ) -> impl Iterator<Item = (ty::PolyTraitRef<'tcx>, traits::PredicateObligation<'tcx>)>
-    + Captures<'tcx>
-    + 'b {
+           + Captures<'tcx>
+           + 'b {
         // FIXME: consider using `sub_root_var` here so we
         // can see through subtyping.
         let ty_var_root = self.root_var(self_ty);

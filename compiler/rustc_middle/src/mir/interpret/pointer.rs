@@ -71,13 +71,21 @@ pub trait PointerArithmetic: HasDataLayout {
     #[inline]
     fn offset<'tcx>(&self, val: u64, i: u64) -> InterpResult<'tcx, u64> {
         let (res, over) = self.overflowing_offset(val, i);
-        if over { throw_ub!(PointerArithOverflow) } else { Ok(res) }
+        if over {
+            throw_ub!(PointerArithOverflow)
+        } else {
+            Ok(res)
+        }
     }
 
     #[inline]
     fn signed_offset<'tcx>(&self, val: u64, i: i64) -> InterpResult<'tcx, u64> {
         let (res, over) = self.overflowing_signed_offset(val, i);
-        if over { throw_ub!(PointerArithOverflow) } else { Ok(res) }
+        if over {
+            throw_ub!(PointerArithOverflow)
+        } else {
+            Ok(res)
+        }
     }
 }
 

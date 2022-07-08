@@ -238,7 +238,11 @@ impl<'a, 'tcx> Builder<'a, 'tcx> {
                     .push_unsafe_count
                     .checked_sub(1)
                     .unwrap_or_else(|| span_bug!(span, "unsafe count underflow"));
-                if self.push_unsafe_count == 0 { Some(self.unpushed_unsafe) } else { None }
+                if self.push_unsafe_count == 0 {
+                    Some(self.unpushed_unsafe)
+                } else {
+                    None
+                }
             }
         };
 

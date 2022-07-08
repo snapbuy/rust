@@ -171,7 +171,11 @@ impl f64 {
     #[stable(feature = "rust1", since = "1.0.0")]
     #[inline]
     pub fn signum(self) -> f64 {
-        if self.is_nan() { Self::NAN } else { 1.0_f64.copysign(self) }
+        if self.is_nan() {
+            Self::NAN
+        } else {
+            1.0_f64.copysign(self)
+        }
     }
 
     /// Returns a number composed of the magnitude of `self` and the sign of
@@ -283,7 +287,11 @@ impl f64 {
     #[stable(feature = "euclidean_division", since = "1.38.0")]
     pub fn rem_euclid(self, rhs: f64) -> f64 {
         let r = self % rhs;
-        if r < 0.0 { r + rhs.abs() } else { r }
+        if r < 0.0 {
+            r + rhs.abs()
+        } else {
+            r
+        }
     }
 
     /// Raises a number to an integer power.
@@ -857,7 +865,11 @@ impl f64 {
     #[stable(feature = "rust1", since = "1.0.0")]
     #[inline]
     pub fn acosh(self) -> f64 {
-        if self < 1.0 { Self::NAN } else { (self + ((self * self) - 1.0).sqrt()).ln() }
+        if self < 1.0 {
+            Self::NAN
+        } else {
+            (self + ((self * self) - 1.0).sqrt()).ln()
+        }
     }
 
     /// Inverse hyperbolic tangent function.

@@ -284,7 +284,11 @@ impl<S: Semantics> PartialOrd for IeeeFloat<S> {
                     // Compare absolute values; invert result if negative.
                     let result = self.cmp_abs_normal(*rhs);
 
-                    if self.sign { result.reverse() } else { result }
+                    if self.sign {
+                        result.reverse()
+                    } else {
+                        result
+                    }
                 }))
             }
         }
@@ -2658,7 +2662,11 @@ mod sig {
         // caller needs to call IeeeFloat::normalize() if normalized value is
         // expected.
         let omsb = omsb(dst);
-        if omsb <= precision { Loss::ExactlyZero } else { shift_right(dst, exp, omsb - precision) }
+        if omsb <= precision {
+            Loss::ExactlyZero
+        } else {
+            shift_right(dst, exp, omsb - precision)
+        }
     }
 
     /// `quotient = dividend / divisor`. Returns the lost fraction.

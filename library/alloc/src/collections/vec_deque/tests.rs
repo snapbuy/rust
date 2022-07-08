@@ -625,7 +625,7 @@ fn issue_80303() {
 
     impl Hasher for SimpleHasher {
         fn finish(&self) -> u64 {
-            self.0.0
+            self.0 .0
         }
 
         fn write(&mut self, bytes: &[u8]) {

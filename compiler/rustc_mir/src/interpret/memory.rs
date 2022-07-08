@@ -472,7 +472,11 @@ impl<'mir, 'tcx, M: Machine<'mir, 'tcx>> Memory<'mir, 'tcx, M> {
 
                 // We can still be zero-sized in this branch, in which case we have to
                 // return `None`.
-                if size.bytes() == 0 { None } else { Some(ret_val) }
+                if size.bytes() == 0 {
+                    None
+                } else {
+                    Some(ret_val)
+                }
             }
         })
     }
@@ -794,7 +798,11 @@ impl<'mir, 'tcx, M: Machine<'mir, 'tcx>> Memory<'mir, 'tcx, M> {
             let mut reachable = FxHashSet::default();
             let global_kind = M::GLOBAL_KIND.map(MemoryKind::Machine);
             let mut todo: Vec<_> = self.alloc_map.filter_map_collect(move |&id, &(kind, _)| {
-                if Some(kind) == global_kind { Some(id) } else { None }
+                if Some(kind) == global_kind {
+                    Some(id)
+                } else {
+                    None
+                }
             });
             todo.extend(static_roots);
             while let Some(id) = todo.pop() {
@@ -810,7 +818,11 @@ impl<'mir, 'tcx, M: Machine<'mir, 'tcx>> Memory<'mir, 'tcx, M> {
 
         // All allocations that are *not* `reachable` and *not* `may_leak` are considered leaking.
         let leaks: Vec<_> = self.alloc_map.filter_map_collect(|&id, &(kind, _)| {
-            if kind.may_leak() || reachable.contains(&id) { None } else { Some(id) }
+            if kind.may_leak() || reachable.contains(&id) {
+                None
+            } else {
+                Some(id)
+            }
         });
         let n = leaks.len();
         if n > 0 {

@@ -1318,7 +1318,11 @@ impl<'tcx> BasicBlockData<'tcx> {
     }
 
     pub fn visitable(&self, index: usize) -> &dyn MirVisitable<'tcx> {
-        if index < self.statements.len() { &self.statements[index] } else { &self.terminator }
+        if index < self.statements.len() {
+            &self.statements[index]
+        } else {
+            &self.terminator
+        }
     }
 }
 

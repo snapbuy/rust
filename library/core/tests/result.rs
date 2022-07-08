@@ -107,7 +107,11 @@ fn test_ok_or_err() {
 #[test]
 fn test_unwrap_or_else() {
     fn handler(msg: &'static str) -> isize {
-        if msg == "I got this." { 50 } else { panic!("BadBad") }
+        if msg == "I got this." {
+            50
+        } else {
+            panic!("BadBad")
+        }
     }
 
     let ok: Result<isize, &'static str> = Ok(100);
@@ -121,7 +125,11 @@ fn test_unwrap_or_else() {
 #[should_panic]
 pub fn test_unwrap_or_else_panic() {
     fn handler(msg: &'static str) -> isize {
-        if msg == "I got this." { 50 } else { panic!("BadBad") }
+        if msg == "I got this." {
+            50
+        } else {
+            panic!("BadBad")
+        }
     }
 
     let bad_err: Result<isize, &'static str> = Err("Unrecoverable mess.");
@@ -358,7 +366,11 @@ fn result_opt_conversions() {
     struct BadNumErr;
 
     fn try_num(x: i32) -> Result<i32, BadNumErr> {
-        if x <= 5 { Ok(x + 1) } else { Err(BadNumErr) }
+        if x <= 5 {
+            Ok(x + 1)
+        } else {
+            Err(BadNumErr)
+        }
     }
 
     type ResOpt = Result<Option<i32>, BadNumErr>;

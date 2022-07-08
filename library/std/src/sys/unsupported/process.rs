@@ -140,13 +140,13 @@ pub struct ExitStatusError(ExitStatus);
 
 impl Into<ExitStatus> for ExitStatusError {
     fn into(self) -> ExitStatus {
-        self.0.0
+        self.0 .0
     }
 }
 
 impl ExitStatusError {
     pub fn code(self) -> Option<NonZeroI32> {
-        self.0.0
+        self.0 .0
     }
 }
 

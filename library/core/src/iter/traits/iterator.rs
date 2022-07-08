@@ -2204,7 +2204,11 @@ pub trait Iterator {
         #[inline]
         fn check<T>(mut f: impl FnMut(T) -> bool) -> impl FnMut((), T) -> ControlFlow<()> {
             move |(), x| {
-                if f(x) { ControlFlow::CONTINUE } else { ControlFlow::BREAK }
+                if f(x) {
+                    ControlFlow::CONTINUE
+                } else {
+                    ControlFlow::BREAK
+                }
             }
         }
         self.try_fold((), check(f)) == ControlFlow::CONTINUE
@@ -2257,7 +2261,11 @@ pub trait Iterator {
         #[inline]
         fn check<T>(mut f: impl FnMut(T) -> bool) -> impl FnMut((), T) -> ControlFlow<()> {
             move |(), x| {
-                if f(x) { ControlFlow::BREAK } else { ControlFlow::CONTINUE }
+                if f(x) {
+                    ControlFlow::BREAK
+                } else {
+                    ControlFlow::CONTINUE
+                }
             }
         }
 
@@ -2317,7 +2325,11 @@ pub trait Iterator {
         #[inline]
         fn check<T>(mut predicate: impl FnMut(&T) -> bool) -> impl FnMut((), T) -> ControlFlow<T> {
             move |(), x| {
-                if predicate(&x) { ControlFlow::Break(x) } else { ControlFlow::CONTINUE }
+                if predicate(&x) {
+                    ControlFlow::Break(x)
+                } else {
+                    ControlFlow::CONTINUE
+                }
             }
         }
 
@@ -2496,7 +2508,11 @@ pub trait Iterator {
         ) -> impl FnMut(usize, T) -> ControlFlow<usize, usize> {
             #[rustc_inherit_overflow_checks]
             move |i, x| {
-                if predicate(x) { ControlFlow::Break(i) } else { ControlFlow::Continue(i + 1) }
+                if predicate(x) {
+                    ControlFlow::Break(i)
+                } else {
+                    ControlFlow::Continue(i + 1)
+                }
             }
         }
 
@@ -2555,7 +2571,11 @@ pub trait Iterator {
         ) -> impl FnMut(usize, T) -> ControlFlow<usize, usize> {
             move |i, x| {
                 let i = i - 1;
-                if predicate(x) { ControlFlow::Break(i) } else { ControlFlow::Continue(i) }
+                if predicate(x) {
+                    ControlFlow::Break(i)
+                } else {
+                    ControlFlow::Continue(i)
+                }
             }
         }
 

@@ -467,7 +467,11 @@ impl<'cx, 'tcx> TypeFolder<'tcx> for Canonicalizer<'cx, 'tcx> {
         }
 
         let flags = FlagComputation::for_const(ct);
-        if flags.intersects(self.needs_canonical_flags) { ct.super_fold_with(self) } else { ct }
+        if flags.intersects(self.needs_canonical_flags) {
+            ct.super_fold_with(self)
+        } else {
+            ct
+        }
     }
 }
 

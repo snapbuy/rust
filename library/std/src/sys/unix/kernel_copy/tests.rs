@@ -248,15 +248,13 @@ fn bench_socket_pipe_socket_copy(b: &mut test::Bencher) {
     }
 
     let local_source = local_end.clone();
-    crate::thread::spawn(move || {
-        loop {
-            super::sendfile_splice(
-                super::SpliceMode::Splice,
-                local_source.as_raw_fd(),
-                write_end.as_raw_fd(),
-                u64::MAX,
-            );
-        }
+    crate::thread::spawn(move || loop {
+        super::sendfile_splice(
+            super::SpliceMode::Splice,
+            local_source.as_raw_fd(),
+            write_end.as_raw_fd(),
+            u64::MAX,
+        );
     });
 
     const BYTES: usize = 128 * 1024;

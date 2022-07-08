@@ -901,7 +901,11 @@ impl<'a, 'tcx> ImproperCTypesVisitor<'a, 'tcx> {
                 }
             }
 
-            if all_phantom { FfiPhantom(ty) } else { FfiSafe }
+            if all_phantom {
+                FfiPhantom(ty)
+            } else {
+                FfiSafe
+            }
         }
     }
 

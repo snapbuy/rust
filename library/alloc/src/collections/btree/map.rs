@@ -1727,7 +1727,11 @@ impl<'a, K, V> Iterator for Range<'a, K, V> {
     type Item = (&'a K, &'a V);
 
     fn next(&mut self) -> Option<(&'a K, &'a V)> {
-        if self.inner.is_empty() { None } else { Some(unsafe { self.next_unchecked() }) }
+        if self.inner.is_empty() {
+            None
+        } else {
+            Some(unsafe { self.next_unchecked() })
+        }
     }
 
     fn last(mut self) -> Option<(&'a K, &'a V)> {
@@ -1862,7 +1866,11 @@ impl<K, V> FusedIterator for IntoValues<K, V> {}
 #[stable(feature = "btree_range", since = "1.17.0")]
 impl<'a, K, V> DoubleEndedIterator for Range<'a, K, V> {
     fn next_back(&mut self) -> Option<(&'a K, &'a V)> {
-        if self.inner.is_empty() { None } else { Some(unsafe { self.next_back_unchecked() }) }
+        if self.inner.is_empty() {
+            None
+        } else {
+            Some(unsafe { self.next_back_unchecked() })
+        }
     }
 }
 
@@ -1887,7 +1895,11 @@ impl<'a, K, V> Iterator for RangeMut<'a, K, V> {
     type Item = (&'a K, &'a mut V);
 
     fn next(&mut self) -> Option<(&'a K, &'a mut V)> {
-        if self.inner.is_empty() { None } else { Some(unsafe { self.next_unchecked() }) }
+        if self.inner.is_empty() {
+            None
+        } else {
+            Some(unsafe { self.next_unchecked() })
+        }
     }
 
     fn last(mut self) -> Option<(&'a K, &'a mut V)> {
@@ -1918,7 +1930,11 @@ impl<'a, K, V> RangeMut<'a, K, V> {
 #[stable(feature = "btree_range", since = "1.17.0")]
 impl<'a, K, V> DoubleEndedIterator for RangeMut<'a, K, V> {
     fn next_back(&mut self) -> Option<(&'a K, &'a mut V)> {
-        if self.inner.is_empty() { None } else { Some(unsafe { self.next_back_unchecked() }) }
+        if self.inner.is_empty() {
+            None
+        } else {
+            Some(unsafe { self.next_back_unchecked() })
+        }
     }
 }
 

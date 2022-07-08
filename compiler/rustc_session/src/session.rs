@@ -480,7 +480,11 @@ impl Session {
         let old_count = self.err_count();
         let result = f();
         let errors = self.err_count() - old_count;
-        if errors == 0 { Ok(result) } else { Err(ErrorReported) }
+        if errors == 0 {
+            Ok(result)
+        } else {
+            Err(ErrorReported)
+        }
     }
     pub fn span_warn<S: Into<MultiSpan>>(&self, sp: S, msg: &str) {
         self.diagnostic().span_warn(sp, msg)
@@ -610,10 +614,13 @@ impl Session {
         self.opts.debugging_opts.binary_dep_depinfo
     }
     pub fn mir_opt_level(&self) -> usize {
-        self.opts
-            .debugging_opts
-            .mir_opt_level
-            .unwrap_or_else(|| if self.opts.optimize != config::OptLevel::No { 2 } else { 1 })
+        self.opts.debugging_opts.mir_opt_level.unwrap_or_else(|| {
+            if self.opts.optimize != config::OptLevel::No {
+                2
+            } else {
+                1
+            }
+        })
     }
 
     /// Gets the features enabled for the current compilation session.

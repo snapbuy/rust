@@ -453,7 +453,11 @@ impl<T> Packet<T> {
         // positive.
         let steals = {
             let cnt = self.cnt.load(Ordering::SeqCst);
-            if cnt < 0 && cnt != DISCONNECTED { -cnt } else { 0 }
+            if cnt < 0 && cnt != DISCONNECTED {
+                -cnt
+            } else {
+                0
+            }
         };
         let prev = self.bump(steals + 1);
 

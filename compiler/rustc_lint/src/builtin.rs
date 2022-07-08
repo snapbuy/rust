@@ -2054,7 +2054,11 @@ impl ExplicitOutlivesRequirements {
                             inferred_outlives.iter().any(|r| matches!(r, ty::ReStatic))
                         }
                         Some(Region::EarlyBound(index, ..)) => inferred_outlives.iter().any(|r| {
-                            if let ty::ReEarlyBound(ebr) = r { ebr.index == index } else { false }
+                            if let ty::ReEarlyBound(ebr) = r {
+                                ebr.index == index
+                            } else {
+                                false
+                            }
                         }),
                         _ => false,
                     };

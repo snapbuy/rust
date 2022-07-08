@@ -998,7 +998,11 @@ macro_rules! visit_place_fns {
                         location,
                     );
 
-                    if new_local == local { None } else { Some(PlaceElem::Index(new_local)) }
+                    if new_local == local {
+                        None
+                    } else {
+                        Some(PlaceElem::Index(new_local))
+                    }
                 }
                 PlaceElem::Deref
                 | PlaceElem::Field(..)

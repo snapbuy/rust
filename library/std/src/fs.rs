@@ -2172,7 +2172,11 @@ impl DirBuilder {
     }
 
     fn _create(&self, path: &Path) -> io::Result<()> {
-        if self.recursive { self.create_dir_all(path) } else { self.inner.mkdir(path) }
+        if self.recursive {
+            self.create_dir_all(path)
+        } else {
+            self.inner.mkdir(path)
+        }
     }
 
     fn create_dir_all(&self, path: &Path) -> io::Result<()> {

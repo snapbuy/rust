@@ -346,7 +346,11 @@ impl char {
             }
         };
 
-        if val < radix { Some(val) } else { None }
+        if val < radix {
+            Some(val)
+        } else {
+            None
+        }
     }
 
     /// Returns an iterator that yields the hexadecimal Unicode escape of a
@@ -603,7 +607,11 @@ impl char {
     #[inline]
     pub const fn len_utf16(self) -> usize {
         let ch = self as u32;
-        if (ch & 0xFFFF) == ch { 1 } else { 2 }
+        if (ch & 0xFFFF) == ch {
+            1
+        } else {
+            2
+        }
     }
 
     /// Encodes this character as UTF-8 into the provided byte buffer,

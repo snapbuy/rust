@@ -1960,7 +1960,11 @@ fn add_upstream_rust_crates<'a, B: ArchiveBuilder<'a>>(
 
     // Converts a library file-stem into a cc -l argument
     fn unlib<'a>(target: &Target, stem: &'a str) -> &'a str {
-        if stem.starts_with("lib") && !target.is_like_windows { &stem[3..] } else { stem }
+        if stem.starts_with("lib") && !target.is_like_windows {
+            &stem[3..]
+        } else {
+            stem
+        }
     }
 
     // Adds the static "rlib" versions of all crates to the command line.

@@ -1693,7 +1693,11 @@ fn print_disambiguation_help(
         format!(
             "({}{})",
             if rcvr_ty.is_region_ptr() {
-                if rcvr_ty.is_mutable_ptr() { "&mut " } else { "&" }
+                if rcvr_ty.is_mutable_ptr() {
+                    "&mut "
+                } else {
+                    "&"
+                }
             } else {
                 ""
             },

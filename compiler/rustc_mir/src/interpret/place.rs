@@ -455,7 +455,7 @@ where
                     throw_ub!(BoundsCheckFailed { len, index });
                 }
                 let offset = stride * index; // `Size` multiplication
-                // All fields have the same layout.
+                                             // All fields have the same layout.
                 let field_layout = base.layout.field(self, 0)?;
 
                 assert!(!field_layout.is_unsized());

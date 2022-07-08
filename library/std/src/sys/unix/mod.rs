@@ -175,7 +175,11 @@ macro_rules! impl_is_minus_one {
 impl_is_minus_one! { i8 i16 i32 i64 isize }
 
 pub fn cvt<T: IsMinusOne>(t: T) -> crate::io::Result<T> {
-    if t.is_minus_one() { Err(crate::io::Error::last_os_error()) } else { Ok(t) }
+    if t.is_minus_one() {
+        Err(crate::io::Error::last_os_error())
+    } else {
+        Ok(t)
+    }
 }
 
 pub fn cvt_r<T, F>(mut f: F) -> crate::io::Result<T>
@@ -192,7 +196,11 @@ where
 }
 
 pub fn cvt_nz(error: libc::c_int) -> crate::io::Result<()> {
-    if error == 0 { Ok(()) } else { Err(crate::io::Error::from_raw_os_error(error)) }
+    if error == 0 {
+        Ok(())
+    } else {
+        Err(crate::io::Error::from_raw_os_error(error))
+    }
 }
 
 // On Unix-like platforms, libc::abort will unregister signal handlers

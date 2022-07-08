@@ -272,7 +272,11 @@ impl<T> VecDeque<T> {
     unsafe fn wrap_copy(&self, dst: usize, src: usize, len: usize) {
         #[allow(dead_code)]
         fn diff(a: usize, b: usize) -> usize {
-            if a <= b { b - a } else { a - b }
+            if a <= b {
+                b - a
+            } else {
+                a - b
+            }
         }
         debug_assert!(
             cmp::min(diff(dst, src), self.cap() - diff(dst, src)) + len <= self.cap(),

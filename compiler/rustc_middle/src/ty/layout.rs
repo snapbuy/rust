@@ -325,7 +325,11 @@ impl<'tcx> LayoutCx<'tcx, TyCtxt<'tcx>> {
                 if let StructKind::MaybeUnsized = kind { fields.len() - 1 } else { fields.len() };
             let optimizing = &mut inverse_memory_index[..end];
             let field_align = |f: &TyAndLayout<'_>| {
-                if let Some(pack) = pack { f.align.abi.min(pack) } else { f.align.abi }
+                if let Some(pack) = pack {
+                    f.align.abi.min(pack)
+                } else {
+                    f.align.abi
+                }
             };
             match kind {
                 StructKind::AlwaysSized | StructKind::MaybeUnsized => {
@@ -865,12 +869,13 @@ impl<'tcx> LayoutCx<'tcx, TyCtxt<'tcx>> {
                     let is_zst = fields.iter().all(|f| f.is_zst());
                     uninhabited && is_zst
                 };
-                let (present_first, present_second) = {
-                    let mut present_variants = variants
-                        .iter_enumerated()
-                        .filter_map(|(i, v)| if absent(v) { None } else { Some(i) });
-                    (present_variants.next(), present_variants.next())
-                };
+                let (present_first, present_second) =
+                    {
+                        let mut present_variants = variants
+                            .iter_enumerated()
+                            .filter_map(|(i, v)| if absent(v) { None } else { Some(i) });
+                        (present_variants.next(), present_variants.next())
+                    };
                 let present_first = match present_first {
                     Some(present_first) => present_first,
                     // Uninhabited because it has no variants, or only absent ones.
@@ -2294,7 +2299,11 @@ where
 
     fn pointee_info_at(this: TyAndLayout<'tcx>, cx: &C, offset: Size) -> Option<PointeeInfo> {
         let addr_space_of_ty = |ty: Ty<'tcx>| {
-            if ty.is_fn() { cx.data_layout().instruction_address_space } else { AddressSpace::DATA }
+            if ty.is_fn() {
+                cx.data_layout().instruction_address_space
+            } else {
+                AddressSpace::DATA
+            }
         };
 
         let pointee_info = match *this.ty.kind() {

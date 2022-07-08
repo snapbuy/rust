@@ -1166,7 +1166,11 @@ where
                 || (n >= 3 && runs[n - 3].len <= runs[n - 2].len + runs[n - 1].len)
                 || (n >= 4 && runs[n - 4].len <= runs[n - 3].len + runs[n - 2].len))
         {
-            if n >= 3 && runs[n - 3].len < runs[n - 1].len { Some(n - 3) } else { Some(n - 2) }
+            if n >= 3 && runs[n - 3].len < runs[n - 1].len {
+                Some(n - 3)
+            } else {
+                Some(n - 2)
+            }
         } else {
             None
         }

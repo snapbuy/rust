@@ -368,7 +368,11 @@ impl<'a> Backtrace {
     /// Returns an iterator over the backtrace frames.
     #[unstable(feature = "backtrace_frames", issue = "79676")]
     pub fn frames(&'a self) -> &'a [BacktraceFrame] {
-        if let Inner::Captured(c) = &self.inner { &c.force().frames } else { &[] }
+        if let Inner::Captured(c) = &self.inner {
+            &c.force().frames
+        } else {
+            &[]
+        }
     }
 }
 

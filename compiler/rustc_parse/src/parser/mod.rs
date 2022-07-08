@@ -598,7 +598,11 @@ impl<'a> Parser<'a> {
     /// If the next token is not the given word, signals an error.
     /// Otherwise, eats it.
     fn expect_keyword(&mut self, kw: Symbol) -> PResult<'a, ()> {
-        if !self.eat_keyword(kw) { self.unexpected() } else { Ok(()) }
+        if !self.eat_keyword(kw) {
+            self.unexpected()
+        } else {
+            Ok(())
+        }
     }
 
     /// Is the given keyword `kw` followed by a non-reserved identifier?
@@ -689,13 +693,21 @@ impl<'a> Parser<'a> {
     /// Eats `&` possibly breaking tokens like `&&` in process.
     /// Signals an error if `&` is not eaten.
     fn expect_and(&mut self) -> PResult<'a, ()> {
-        if self.break_and_eat(token::BinOp(token::And)) { Ok(()) } else { self.unexpected() }
+        if self.break_and_eat(token::BinOp(token::And)) {
+            Ok(())
+        } else {
+            self.unexpected()
+        }
     }
 
     /// Eats `|` possibly breaking tokens like `||` in process.
     /// Signals an error if `|` was not eaten.
     fn expect_or(&mut self) -> PResult<'a, ()> {
-        if self.break_and_eat(token::BinOp(token::Or)) { Ok(()) } else { self.unexpected() }
+        if self.break_and_eat(token::BinOp(token::Or)) {
+            Ok(())
+        } else {
+            self.unexpected()
+        }
     }
 
     /// Eats `<` possibly breaking tokens like `<<` in process.
@@ -713,7 +725,11 @@ impl<'a> Parser<'a> {
     /// Eats `<` possibly breaking tokens like `<<` in process.
     /// Signals an error if `<` was not eaten.
     fn expect_lt(&mut self) -> PResult<'a, ()> {
-        if self.eat_lt() { Ok(()) } else { self.unexpected() }
+        if self.eat_lt() {
+            Ok(())
+        } else {
+            self.unexpected()
+        }
     }
 
     /// Eats `>` possibly breaking tokens like `>>` in process.
@@ -1015,7 +1031,11 @@ impl<'a> Parser<'a> {
 
     /// Parses mutability (`mut` or nothing).
     fn parse_mutability(&mut self) -> Mutability {
-        if self.eat_keyword(kw::Mut) { Mutability::Mut } else { Mutability::Not }
+        if self.eat_keyword(kw::Mut) {
+            Mutability::Mut
+        } else {
+            Mutability::Not
+        }
     }
 
     /// Possibly parses mutability (`const` or `mut`).
@@ -1276,7 +1296,11 @@ impl<'a> Parser<'a> {
 
     /// Parses `extern string_literal?`.
     fn parse_extern(&mut self) -> Extern {
-        if self.eat_keyword(kw::Extern) { Extern::from_abi(self.parse_abi()) } else { Extern::None }
+        if self.eat_keyword(kw::Extern) {
+            Extern::from_abi(self.parse_abi())
+        } else {
+            Extern::None
+        }
     }
 
     /// Parses a string literal as an ABI spec.

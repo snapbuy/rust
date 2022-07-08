@@ -894,7 +894,11 @@ impl<'tcx> TypeFoldable<'tcx> for Ty<'tcx> {
             | ty::Foreign(..) => return self,
         };
 
-        if *self.kind() == kind { self } else { folder.tcx().mk_ty(kind) }
+        if *self.kind() == kind {
+            self
+        } else {
+            folder.tcx().mk_ty(kind)
+        }
     }
 
     fn fold_with<F: TypeFolder<'tcx>>(self, folder: &mut F) -> Self {

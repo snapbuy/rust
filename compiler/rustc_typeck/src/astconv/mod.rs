@@ -70,7 +70,7 @@ pub trait AstConv<'tcx> {
 
     /// Returns the lifetime to use when a lifetime is omitted (and not elided).
     fn re_infer(&self, param: Option<&ty::GenericParamDef>, span: Span)
-    -> Option<ty::Region<'tcx>>;
+        -> Option<ty::Region<'tcx>>;
 
     /// Returns the type to use when a type is omitted.
     fn ty_infer(&self, param: Option<&ty::GenericParamDef>, span: Span) -> Ty<'tcx>;
@@ -973,7 +973,11 @@ impl<'o, 'tcx> dyn AstConv<'tcx> + 'o {
         self.add_bounds(param_ty, ast_bounds, &mut bounds, ty::List::empty());
 
         bounds.implicitly_sized = if let SizedByDefault::Yes = sized_by_default {
-            if !self.is_unsized(ast_bounds, span) { Some(span) } else { None }
+            if !self.is_unsized(ast_bounds, span) {
+                Some(span)
+            } else {
+                None
+            }
         } else {
             None
         };
@@ -2119,7 +2123,11 @@ impl<'o, 'tcx> dyn AstConv<'tcx> + 'o {
                     path_segs.iter().map(|PathSeg(_, index)| index).collect();
                 self.prohibit_generics(path.segments.iter().enumerate().filter_map(
                     |(index, seg)| {
-                        if !generic_segs.contains(&index) { Some(seg) } else { None }
+                        if !generic_segs.contains(&index) {
+                            Some(seg)
+                        } else {
+                            None
+                        }
                     },
                 ));
 

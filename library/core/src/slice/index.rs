@@ -154,13 +154,21 @@ unsafe impl<T> SliceIndex<[T]> for usize {
     #[inline]
     fn get(self, slice: &[T]) -> Option<&T> {
         // SAFETY: `self` is checked to be in bounds.
-        if self < slice.len() { unsafe { Some(&*self.get_unchecked(slice)) } } else { None }
+        if self < slice.len() {
+            unsafe { Some(&*self.get_unchecked(slice)) }
+        } else {
+            None
+        }
     }
 
     #[inline]
     fn get_mut(self, slice: &mut [T]) -> Option<&mut T> {
         // SAFETY: `self` is checked to be in bounds.
-        if self < slice.len() { unsafe { Some(&mut *self.get_unchecked_mut(slice)) } } else { None }
+        if self < slice.len() {
+            unsafe { Some(&mut *self.get_unchecked_mut(slice)) }
+        } else {
+            None
+        }
     }
 
     #[inline]
@@ -378,12 +386,20 @@ unsafe impl<T> SliceIndex<[T]> for ops::RangeInclusive<usize> {
 
     #[inline]
     fn get(self, slice: &[T]) -> Option<&[T]> {
-        if *self.end() == usize::MAX { None } else { self.into_slice_range().get(slice) }
+        if *self.end() == usize::MAX {
+            None
+        } else {
+            self.into_slice_range().get(slice)
+        }
     }
 
     #[inline]
     fn get_mut(self, slice: &mut [T]) -> Option<&mut [T]> {
-        if *self.end() == usize::MAX { None } else { self.into_slice_range().get_mut(slice) }
+        if *self.end() == usize::MAX {
+            None
+        } else {
+            self.into_slice_range().get_mut(slice)
+        }
     }
 
     #[inline]

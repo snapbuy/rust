@@ -220,7 +220,11 @@ impl<T: Write + Send> TerminfoTerminal<T> {
     }
 
     fn dim_if_necessary(&self, color: color::Color) -> color::Color {
-        if color >= self.num_colors && color >= 8 && color < 16 { color - 8 } else { color }
+        if color >= self.num_colors && color >= 8 && color < 16 {
+            color - 8
+        } else {
+            color
+        }
     }
 
     fn apply_cap(&mut self, cmd: &str, params: &[Param]) -> io::Result<bool> {

@@ -11,7 +11,11 @@ impl<'tcx> super::QueryTypeOp<'tcx> for Eq<'tcx> {
         _tcx: TyCtxt<'tcx>,
         key: &ParamEnvAnd<'tcx, Eq<'tcx>>,
     ) -> Option<Self::QueryResponse> {
-        if key.value.a == key.value.b { Some(()) } else { None }
+        if key.value.a == key.value.b {
+            Some(())
+        } else {
+            None
+        }
     }
 
     fn perform_query(

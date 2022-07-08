@@ -60,7 +60,11 @@ impl<T> Sharded<T> {
     /// The shard is selected by hashing `val` with `FxHasher`.
     #[inline]
     pub fn get_shard_by_value<K: Hash + ?Sized>(&self, val: &K) -> &Lock<T> {
-        if SHARDS == 1 { &self.shards[0].0 } else { self.get_shard_by_hash(make_hash(val)) }
+        if SHARDS == 1 {
+            &self.shards[0].0
+        } else {
+            self.get_shard_by_hash(make_hash(val))
+        }
     }
 
     #[inline]

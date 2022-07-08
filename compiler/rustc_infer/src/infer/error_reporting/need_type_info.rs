@@ -486,7 +486,11 @@ impl<'a, 'tcx> InferCtxt<'a, 'tcx> {
             //   |                             ^^^^^^^ cannot infer type
             //   |
             //   = note: cannot resolve `<_ as std::ops::Try>::Ok == _`
-            if span.contains(*call_span) { *call_span } else { span }
+            if span.contains(*call_span) {
+                *call_span
+            } else {
+                span
+            }
         } else {
             span
         };

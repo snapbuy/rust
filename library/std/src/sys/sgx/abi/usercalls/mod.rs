@@ -105,7 +105,7 @@ pub fn accept_stream(fd: Fd) -> IoResult<(Fd, String, String)> {
     unsafe {
         let mut bufs = alloc::User::<[ByteBuffer; 2]>::uninitialized();
         let mut buf_it = alloc::UserRef::iter_mut(&mut *bufs); // FIXME: can this be done
-        // without forcing coercion?
+                                                               // without forcing coercion?
         let (local, peer) = (buf_it.next().unwrap(), buf_it.next().unwrap());
         let fd = raw::accept_stream(fd, local.as_raw_mut_ptr(), peer.as_raw_mut_ptr())
             .from_sgx_result()?;
@@ -122,7 +122,7 @@ pub fn connect_stream(addr: &str) -> IoResult<(Fd, String, String)> {
         let addr_user = alloc::User::new_from_enclave(addr.as_bytes());
         let mut bufs = alloc::User::<[ByteBuffer; 2]>::uninitialized();
         let mut buf_it = alloc::UserRef::iter_mut(&mut *bufs); // FIXME: can this be done
-        // without forcing coercion?
+                                                               // without forcing coercion?
         let (local, peer) = (buf_it.next().unwrap(), buf_it.next().unwrap());
         let fd = raw::connect_stream(
             addr_user.as_ptr(),

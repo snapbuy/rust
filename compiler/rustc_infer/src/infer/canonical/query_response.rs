@@ -304,7 +304,11 @@ impl<'cx, 'tcx> InferCtxt<'cx, 'tcx> {
                 // only compare the inner values to one another, so they are still at
                 // consistent binding levels.
                 let ty::OutlivesPredicate(k1, r2) = r_c.skip_binder();
-                if k1 != r2.into() { Some(r_c) } else { None }
+                if k1 != r2.into() {
+                    Some(r_c)
+                } else {
+                    None
+                }
             }),
         );
 

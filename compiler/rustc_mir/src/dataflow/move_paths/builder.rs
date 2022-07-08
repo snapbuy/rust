@@ -215,7 +215,11 @@ impl<'a, 'tcx> MoveDataBuilder<'a, 'tcx> {
             "done dumping moves"
         });
 
-        if !self.errors.is_empty() { Err((self.data, self.errors)) } else { Ok(self.data) }
+        if !self.errors.is_empty() {
+            Err((self.data, self.errors))
+        } else {
+            Ok(self.data)
+        }
     }
 }
 

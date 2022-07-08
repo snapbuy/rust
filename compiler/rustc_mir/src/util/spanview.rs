@@ -550,7 +550,11 @@ where
     W: Write,
 {
     let maybe_alt_class = if layer > 0 {
-        if alt { " odd" } else { " even" }
+        if alt {
+            " odd"
+        } else {
+            " even"
+        }
     } else {
         ""
     };
@@ -616,7 +620,11 @@ fn make_html_snippet<'tcx>(
     } else {
         escape_html(&snippet)
     };
-    if html_snippet.is_empty() { None } else { Some(html_snippet) }
+    if html_snippet.is_empty() {
+        None
+    } else {
+        Some(html_snippet)
+    }
 }
 
 fn tooltip<'tcx>(
@@ -657,11 +665,19 @@ fn trim_span(span: Span, from_pos: BytePos, to_pos: BytePos) -> Span {
 }
 
 fn trim_span_lo(span: Span, from_pos: BytePos) -> Span {
-    if from_pos <= span.lo() { span } else { span.with_lo(cmp::min(span.hi(), from_pos)) }
+    if from_pos <= span.lo() {
+        span
+    } else {
+        span.with_lo(cmp::min(span.hi(), from_pos))
+    }
 }
 
 fn trim_span_hi(span: Span, to_pos: BytePos) -> Span {
-    if to_pos >= span.hi() { span } else { span.with_hi(cmp::max(span.lo(), to_pos)) }
+    if to_pos >= span.hi() {
+        span
+    } else {
+        span.with_hi(cmp::max(span.lo(), to_pos))
+    }
 }
 
 fn fn_span<'tcx>(tcx: TyCtxt<'tcx>, def_id: DefId) -> Span {
@@ -669,7 +685,11 @@ fn fn_span<'tcx>(tcx: TyCtxt<'tcx>, def_id: DefId) -> Span {
         tcx.hir().local_def_id_to_hir_id(def_id.as_local().expect("expected DefId is local"));
     let fn_decl_span = tcx.hir().span(hir_id);
     if let Some(body_span) = hir_body(tcx, def_id).map(|hir_body| hir_body.value.span) {
-        if fn_decl_span.ctxt() == body_span.ctxt() { fn_decl_span.to(body_span) } else { body_span }
+        if fn_decl_span.ctxt() == body_span.ctxt() {
+            fn_decl_span.to(body_span)
+        } else {
+            body_span
+        }
     } else {
         fn_decl_span
     }

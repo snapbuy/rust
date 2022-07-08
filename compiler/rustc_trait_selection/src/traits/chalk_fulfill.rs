@@ -134,7 +134,11 @@ impl TraitEngine<'tcx> for FulfillmentContext<'tcx> {
             }
         }
 
-        if errors.is_empty() { Ok(()) } else { Err(errors) }
+        if errors.is_empty() {
+            Ok(())
+        } else {
+            Err(errors)
+        }
     }
 
     fn pending_obligations(&self) -> Vec<PredicateObligation<'tcx>> {

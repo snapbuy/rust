@@ -325,7 +325,11 @@ impl<'a, 'tcx> TyDecoder<'tcx> for DecodeContext<'a, 'tcx> {
     }
 
     fn map_encoded_cnum_to_current(&self, cnum: CrateNum) -> CrateNum {
-        if cnum == LOCAL_CRATE { self.cdata().cnum } else { self.cdata().cnum_map[cnum] }
+        if cnum == LOCAL_CRATE {
+            self.cdata().cnum
+        } else {
+            self.cdata().cnum_map[cnum]
+        }
     }
 
     fn decode_alloc_id(&mut self) -> Result<rustc_middle::mir::interpret::AllocId, Self::Error> {
@@ -559,7 +563,11 @@ impl<'a, 'tcx, T: Decodable<DecodeContext<'a, 'tcx>>> Decodable<DecodeContext<'a
 {
     fn decode(decoder: &mut DecodeContext<'a, 'tcx>) -> Result<Self, String> {
         let len = decoder.read_usize()?;
-        if len == 0 { Ok(Lazy::empty()) } else { decoder.read_lazy_with_meta(len) }
+        if len == 0 {
+            Ok(Lazy::empty())
+        } else {
+            decoder.read_lazy_with_meta(len)
+        }
     }
 }
 

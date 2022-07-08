@@ -494,7 +494,7 @@ impl<'a> Parser<'a> {
     /// Note that this does *not* parse bare trait objects.
     fn parse_dyn_ty(&mut self, impl_dyn_multi: &mut bool) -> PResult<'a, TyKind> {
         self.bump(); // `dyn`
-        // Always parse bounds greedily for better error recovery.
+                     // Always parse bounds greedily for better error recovery.
         let bounds = self.parse_generic_bounds(None)?;
         *impl_dyn_multi = bounds.len() > 1 || self.prev_token.kind == TokenKind::BinOp(token::Plus);
         Ok(TyKind::TraitObject(bounds, TraitObjectSyntax::Dyn))

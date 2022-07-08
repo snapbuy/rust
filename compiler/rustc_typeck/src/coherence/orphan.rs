@@ -132,15 +132,24 @@ impl ItemLikeVisitor<'v> for OrphanChecker<'tcx> {
                                 local type (e.g., `MyStruct<{}>`)",
                                 param_ty,
                                 param_ty
-                            ).span_label(sp, format!(
+                            )
+                            .span_label(
+                                sp,
+                                format!(
                                 "type parameter `{}` must be used as the type parameter for some \
                                 local type",
                                 param_ty,
-                            )).note("implementing a foreign trait is only possible if at \
-                                    least one of the types for which it is implemented is local"
-                            ).note("only traits defined in the current crate can be \
-                                    implemented for a type parameter"
-                            ).emit();
+                            ),
+                            )
+                            .note(
+                                "implementing a foreign trait is only possible if at \
+                                    least one of the types for which it is implemented is local",
+                            )
+                            .note(
+                                "only traits defined in the current crate can be \
+                                    implemented for a type parameter",
+                            )
+                            .emit();
                         }
                     };
                     return;

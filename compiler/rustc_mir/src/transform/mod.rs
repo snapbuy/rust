@@ -146,7 +146,11 @@ fn mir_keys(tcx: TyCtxt<'_>, (): ()) -> FxHashSet<LocalDefId> {
 /// type `T`.
 pub fn default_name<T: ?Sized>() -> Cow<'static, str> {
     let name = std::any::type_name::<T>();
-    if let Some(tail) = name.rfind(':') { Cow::from(&name[tail + 1..]) } else { Cow::from(name) }
+    if let Some(tail) = name.rfind(':') {
+        Cow::from(&name[tail + 1..])
+    } else {
+        Cow::from(name)
+    }
 }
 
 /// A streamlined trait that you can implement to create a pass; the

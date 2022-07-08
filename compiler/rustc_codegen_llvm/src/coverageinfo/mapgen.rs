@@ -340,7 +340,11 @@ fn add_unused_functions<'ll, 'tcx>(cx: &CodegenCx<'ll, 'tcx>) {
         .iter()
         .filter_map(
             |(&file_name, def_id)| {
-                if cgu_covered_def_ids.contains(def_id) { Some(file_name) } else { None }
+                if cgu_covered_def_ids.contains(def_id) {
+                    Some(file_name)
+                } else {
+                    None
+                }
             },
         )
         .collect();

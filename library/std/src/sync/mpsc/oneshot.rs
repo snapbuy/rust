@@ -36,11 +36,11 @@ use crate::time::Instant;
 const EMPTY: usize = 0; // initial state: no data, no blocked receiver
 const DATA: usize = 1; // data ready for receiver to take
 const DISCONNECTED: usize = 2; // channel is disconnected OR upgraded
-// Any other value represents a pointer to a SignalToken value. The
-// protocol ensures that when the state moves *to* a pointer,
-// ownership of the token is given to the packet, and when the state
-// moves *from* a pointer, ownership of the token is transferred to
-// whoever changed the state.
+                               // Any other value represents a pointer to a SignalToken value. The
+                               // protocol ensures that when the state moves *to* a pointer,
+                               // ownership of the token is given to the packet, and when the state
+                               // moves *from* a pointer, ownership of the token is transferred to
+                               // whoever changed the state.
 
 pub struct Packet<T> {
     // Internal state of the chan/port pair (stores the blocked thread as well)

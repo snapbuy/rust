@@ -450,7 +450,11 @@ fn test_find_map() {
     assert_eq!(iter.next(), Some(&7));
 
     fn half_if_even(x: &isize) -> Option<isize> {
-        if x % 2 == 0 { Some(x / 2) } else { None }
+        if x % 2 == 0 {
+            Some(x / 2)
+        } else {
+            None
+        }
     }
 }
 

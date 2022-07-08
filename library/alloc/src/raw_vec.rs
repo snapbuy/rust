@@ -244,7 +244,11 @@ impl<T, A: Allocator> RawVec<T, A> {
     /// This will always be `usize::MAX` if `T` is zero-sized.
     #[inline(always)]
     pub fn capacity(&self) -> usize {
-        if mem::size_of::<T>() == 0 { usize::MAX } else { self.cap }
+        if mem::size_of::<T>() == 0 {
+            usize::MAX
+        } else {
+            self.cap
+        }
     }
 
     /// Returns a shared reference to the allocator backing this `RawVec`.
@@ -375,7 +379,11 @@ impl<T, A: Allocator> RawVec<T, A> {
         len: usize,
         additional: usize,
     ) -> Result<(), TryReserveError> {
-        if self.needs_to_grow(len, additional) { self.grow_exact(len, additional) } else { Ok(()) }
+        if self.needs_to_grow(len, additional) {
+            self.grow_exact(len, additional)
+        } else {
+            Ok(())
+        }
     }
 
     /// Shrinks the allocation down to the specified amount. If the given amount

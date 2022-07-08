@@ -26,7 +26,11 @@ impl HirId {
     }
 
     pub fn as_owner(self) -> Option<LocalDefId> {
-        if self.local_id.index() == 0 { Some(self.owner) } else { None }
+        if self.local_id.index() == 0 {
+            Some(self.owner)
+        } else {
+            None
+        }
     }
 
     #[inline]

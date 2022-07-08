@@ -379,9 +379,13 @@ where
             if result != Ordering::Equal {
                 let against = self.0.is_negative() ^ self.1.is_negative();
                 let rhs_against = rhs.0.is_negative() ^ rhs.1.is_negative();
-                (!against)
-                    .cmp(&!rhs_against)
-                    .then_with(|| if against { result.reverse() } else { result })
+                (!against).cmp(&!rhs_against).then_with(|| {
+                    if against {
+                        result.reverse()
+                    } else {
+                        result
+                    }
+                })
             } else {
                 result
             }

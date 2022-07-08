@@ -103,7 +103,11 @@ where
     fn visit_trait(&mut self, trait_ref: TraitRef<'tcx>) -> ControlFlow<V::BreakTy> {
         let TraitRef { def_id, substs } = trait_ref;
         self.def_id_visitor.visit_def_id(def_id, "trait", &trait_ref.print_only_trait_path())?;
-        if self.def_id_visitor.shallow() { ControlFlow::CONTINUE } else { substs.visit_with(self) }
+        if self.def_id_visitor.shallow() {
+            ControlFlow::CONTINUE
+        } else {
+            substs.visit_with(self)
+        }
     }
 
     fn visit_projection_ty(
@@ -290,7 +294,11 @@ where
 }
 
 fn min(vis1: ty::Visibility, vis2: ty::Visibility, tcx: TyCtxt<'_>) -> ty::Visibility {
-    if vis1.is_at_least(vis2, tcx) { vis2 } else { vis1 }
+    if vis1.is_at_least(vis2, tcx) {
+        vis2
+    } else {
+        vis1
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -91,7 +91,11 @@ pub fn from_u32(i: u32) -> Option<char> {
 #[stable(feature = "char_from_unchecked", since = "1.5.0")]
 pub unsafe fn from_u32_unchecked(i: u32) -> char {
     // SAFETY: the caller must guarantee that `i` is a valid char value.
-    if cfg!(debug_assertions) { char::from_u32(i).unwrap() } else { unsafe { transmute(i) } }
+    if cfg!(debug_assertions) {
+        char::from_u32(i).unwrap()
+    } else {
+        unsafe { transmute(i) }
+    }
 }
 
 #[stable(feature = "char_convert", since = "1.13.0")]
@@ -326,7 +330,11 @@ pub fn from_digit(num: u32, radix: u32) -> Option<char> {
     }
     if num < radix {
         let num = num as u8;
-        if num < 10 { Some((b'0' + num) as char) } else { Some((b'a' + num - 10) as char) }
+        if num < 10 {
+            Some((b'0' + num) as char)
+        } else {
+            Some((b'a' + num - 10) as char)
+        }
     } else {
         None
     }

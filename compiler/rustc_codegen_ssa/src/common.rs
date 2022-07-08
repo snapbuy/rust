@@ -154,7 +154,11 @@ pub fn build_unchecked_rshift<'a, 'tcx, Bx: BuilderMethods<'a, 'tcx>>(
     // #1877, #10183: Ensure that input is always valid
     let rhs = shift_mask_rhs(bx, rhs);
     let is_signed = lhs_t.is_signed();
-    if is_signed { bx.ashr(lhs, rhs) } else { bx.lshr(lhs, rhs) }
+    if is_signed {
+        bx.ashr(lhs, rhs)
+    } else {
+        bx.lshr(lhs, rhs)
+    }
 }
 
 fn shift_mask_rhs<'a, 'tcx, Bx: BuilderMethods<'a, 'tcx>>(

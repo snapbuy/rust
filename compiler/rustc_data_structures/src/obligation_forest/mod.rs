@@ -354,7 +354,11 @@ impl<O: ForestObligation> ObligationForest<O> {
                         node.dependents.push(parent_index);
                     }
                 }
-                if let NodeState::Error = node.state.get() { Err(()) } else { Ok(()) }
+                if let NodeState::Error = node.state.get() {
+                    Err(())
+                } else {
+                    Ok(())
+                }
             }
             Entry::Vacant(v) => {
                 let obligation_tree_id = match parent {

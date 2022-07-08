@@ -1601,9 +1601,9 @@ extern "C" {
         IsSigned: bool,
     ) -> &'a Value;
     pub fn LLVMRustBuildVectorReduceFMin(B: &Builder<'a>, Src: &'a Value, IsNaN: bool)
-    -> &'a Value;
+        -> &'a Value;
     pub fn LLVMRustBuildVectorReduceFMax(B: &Builder<'a>, Src: &'a Value, IsNaN: bool)
-    -> &'a Value;
+        -> &'a Value;
 
     pub fn LLVMRustBuildMinNum(B: &Builder<'a>, LHS: &'a Value, LHS: &'a Value) -> &'a Value;
     pub fn LLVMRustBuildMaxNum(B: &Builder<'a>, LHS: &'a Value, LHS: &'a Value) -> &'a Value;
@@ -1785,7 +1785,7 @@ extern "C" {
     );
 
     pub fn LLVMRustCoverageCreatePGOFuncNameVar(F: &'a Value, FuncName: *const c_char)
-    -> &'a Value;
+        -> &'a Value;
     pub fn LLVMRustCoverageHashCString(StrVal: *const c_char) -> u64;
     pub fn LLVMRustCoverageHashByteArray(Bytes: *const c_char, NumBytes: size_t) -> u64;
 

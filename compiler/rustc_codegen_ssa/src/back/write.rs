@@ -125,7 +125,11 @@ impl ModuleConfig {
         // `$regular` and `$other` are evaluated lazily.
         macro_rules! if_regular {
             ($regular: expr, $other: expr) => {
-                if let ModuleKind::Regular = kind { $regular } else { $other }
+                if let ModuleKind::Regular = kind {
+                    $regular
+                } else {
+                    $other
+                }
             };
         }
 

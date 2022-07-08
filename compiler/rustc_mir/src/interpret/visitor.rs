@@ -19,7 +19,7 @@ pub trait Value<'mir, 'tcx, M: Machine<'mir, 'tcx>>: Copy {
 
     /// Makes this into an `OpTy`.
     fn to_op(&self, ecx: &InterpCx<'mir, 'tcx, M>)
-    -> InterpResult<'tcx, OpTy<'tcx, M::PointerTag>>;
+        -> InterpResult<'tcx, OpTy<'tcx, M::PointerTag>>;
 
     /// Creates this from an `MPlaceTy`.
     fn from_mem_place(mplace: MPlaceTy<'tcx, M::PointerTag>) -> Self;

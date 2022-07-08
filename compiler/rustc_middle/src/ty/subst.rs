@@ -270,21 +270,34 @@ impl<'a, 'tcx> InternalSubsts<'tcx> {
 
     #[inline]
     pub fn types(&'a self) -> impl DoubleEndedIterator<Item = Ty<'tcx>> + 'a {
-        self.iter()
-            .filter_map(|k| if let GenericArgKind::Type(ty) = k.unpack() { Some(ty) } else { None })
+        self.iter().filter_map(|k| {
+            if let GenericArgKind::Type(ty) = k.unpack() {
+                Some(ty)
+            } else {
+                None
+            }
+        })
     }
 
     #[inline]
     pub fn regions(&'a self) -> impl DoubleEndedIterator<Item = ty::Region<'tcx>> + 'a {
         self.iter().filter_map(|k| {
-            if let GenericArgKind::Lifetime(lt) = k.unpack() { Some(lt) } else { None }
+            if let GenericArgKind::Lifetime(lt) = k.unpack() {
+                Some(lt)
+            } else {
+                None
+            }
         })
     }
 
     #[inline]
     pub fn consts(&'a self) -> impl DoubleEndedIterator<Item = &'tcx ty::Const<'tcx>> + 'a {
         self.iter().filter_map(|k| {
-            if let GenericArgKind::Const(ct) = k.unpack() { Some(ct) } else { None }
+            if let GenericArgKind::Const(ct) = k.unpack() {
+                Some(ct)
+            } else {
+                None
+            }
         })
     }
 
@@ -374,7 +387,11 @@ impl<'tcx> TypeFoldable<'tcx> for SubstsRef<'tcx> {
         match self.len() {
             1 => {
                 let param0 = self[0].fold_with(folder);
-                if param0 == self[0] { self } else { folder.tcx().intern_substs(&[param0]) }
+                if param0 == self[0] {
+                    self
+                } else {
+                    folder.tcx().intern_substs(&[param0])
+                }
             }
             2 => {
                 let param0 = self[0].fold_with(folder);
@@ -388,7 +405,11 @@ impl<'tcx> TypeFoldable<'tcx> for SubstsRef<'tcx> {
             0 => self,
             _ => {
                 let params: SmallVec<[_; 8]> = self.iter().map(|k| k.fold_with(folder)).collect();
-                if params[..] == self[..] { self } else { folder.tcx().intern_substs(&params) }
+                if params[..] == self[..] {
+                    self
+                } else {
+                    folder.tcx().intern_substs(&params)
+                }
             }
         }
     }

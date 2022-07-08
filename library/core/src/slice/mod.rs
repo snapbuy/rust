@@ -142,7 +142,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn first(&self) -> Option<&T> {
-        if let [first, ..] = self { Some(first) } else { None }
+        if let [first, ..] = self {
+            Some(first)
+        } else {
+            None
+        }
     }
 
     /// Returns a mutable pointer to the first element of the slice, or `None` if it is empty.
@@ -161,7 +165,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn first_mut(&mut self) -> Option<&mut T> {
-        if let [first, ..] = self { Some(first) } else { None }
+        if let [first, ..] = self {
+            Some(first)
+        } else {
+            None
+        }
     }
 
     /// Returns the first and all the rest of the elements of the slice, or `None` if it is empty.
@@ -180,7 +188,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn split_first(&self) -> Option<(&T, &[T])> {
-        if let [first, tail @ ..] = self { Some((first, tail)) } else { None }
+        if let [first, tail @ ..] = self {
+            Some((first, tail))
+        } else {
+            None
+        }
     }
 
     /// Returns the first and all the rest of the elements of the slice, or `None` if it is empty.
@@ -201,7 +213,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn split_first_mut(&mut self) -> Option<(&mut T, &mut [T])> {
-        if let [first, tail @ ..] = self { Some((first, tail)) } else { None }
+        if let [first, tail @ ..] = self {
+            Some((first, tail))
+        } else {
+            None
+        }
     }
 
     /// Returns the last and all the rest of the elements of the slice, or `None` if it is empty.
@@ -220,7 +236,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn split_last(&self) -> Option<(&T, &[T])> {
-        if let [init @ .., last] = self { Some((last, init)) } else { None }
+        if let [init @ .., last] = self {
+            Some((last, init))
+        } else {
+            None
+        }
     }
 
     /// Returns the last and all the rest of the elements of the slice, or `None` if it is empty.
@@ -241,7 +261,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn split_last_mut(&mut self) -> Option<(&mut T, &mut [T])> {
-        if let [init @ .., last] = self { Some((last, init)) } else { None }
+        if let [init @ .., last] = self {
+            Some((last, init))
+        } else {
+            None
+        }
     }
 
     /// Returns the last element of the slice, or `None` if it is empty.
@@ -259,7 +283,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn last(&self) -> Option<&T> {
-        if let [.., last] = self { Some(last) } else { None }
+        if let [.., last] = self {
+            Some(last)
+        } else {
+            None
+        }
     }
 
     /// Returns a mutable pointer to the last item in the slice.
@@ -278,7 +306,11 @@ impl<T> [T] {
     #[rustc_const_unstable(feature = "const_slice_first_last", issue = "83570")]
     #[inline]
     pub const fn last_mut(&mut self) -> Option<&mut T> {
-        if let [.., last] = self { Some(last) } else { None }
+        if let [.., last] = self {
+            Some(last)
+        } else {
+            None
+        }
     }
 
     /// Returns a reference to an element or subslice depending on the type of

@@ -213,7 +213,11 @@ impl<T> Packet<T> {
                 assert!(guard.canceled.is_none());
                 guard.canceled = Some(unsafe { mem::transmute(&mut canceled) });
                 let mut guard = wait(&self.lock, guard, BlockedSender);
-                if canceled { Err(guard.buf.dequeue()) } else { Ok(()) }
+                if canceled {
+                    Err(guard.buf.dequeue())
+                } else {
+                    Ok(())
+                }
             }
 
             // success, we buffered some data

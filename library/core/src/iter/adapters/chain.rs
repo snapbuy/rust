@@ -144,7 +144,11 @@ where
             // we don't fuse the second iterator
         }
 
-        if rem == 0 { Ok(()) } else { Err(n - rem) }
+        if rem == 0 {
+            Ok(())
+        } else {
+            Err(n - rem)
+        }
     }
 
     #[inline]
@@ -246,7 +250,11 @@ where
             // we don't fuse the second iterator
         }
 
-        if rem == 0 { Ok(()) } else { Err(n - rem) }
+        if rem == 0 {
+            Ok(())
+        } else {
+            Err(n - rem)
+        }
     }
 
     #[inline]

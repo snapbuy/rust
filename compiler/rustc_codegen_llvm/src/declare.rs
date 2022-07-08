@@ -128,7 +128,11 @@ impl CodegenCx<'ll, 'tcx> {
     pub fn get_defined_value(&self, name: &str) -> Option<&'ll Value> {
         self.get_declared_value(name).and_then(|val| {
             let declaration = unsafe { llvm::LLVMIsDeclaration(val) != 0 };
-            if !declaration { Some(val) } else { None }
+            if !declaration {
+                Some(val)
+            } else {
+                None
+            }
         })
     }
 }

@@ -204,7 +204,11 @@ impl CoverageGraph {
 
     #[inline(always)]
     pub fn bcb_from_bb(&self, bb: BasicBlock) -> Option<BasicCoverageBlock> {
-        if bb.index() < self.bb_to_bcb.len() { self.bb_to_bcb[bb] } else { None }
+        if bb.index() < self.bb_to_bcb.len() {
+            self.bb_to_bcb[bb]
+        } else {
+            None
+        }
     }
 
     #[inline(always)]
@@ -706,13 +710,13 @@ pub struct ShortCircuitPreorder<
 }
 
 impl<
-    'a,
-    'tcx,
-    F: Fn(
-        &'tcx &'a mir::Body<'tcx>,
-        &'tcx TerminatorKind<'tcx>,
-    ) -> Box<dyn Iterator<Item = &'a BasicBlock> + 'a>,
-> ShortCircuitPreorder<'a, 'tcx, F>
+        'a,
+        'tcx,
+        F: Fn(
+            &'tcx &'a mir::Body<'tcx>,
+            &'tcx TerminatorKind<'tcx>,
+        ) -> Box<dyn Iterator<Item = &'a BasicBlock> + 'a>,
+    > ShortCircuitPreorder<'a, 'tcx, F>
 {
     pub fn new(
         body: &'tcx &'a mir::Body<'tcx>,
@@ -730,13 +734,13 @@ impl<
 }
 
 impl<
-    'a: 'tcx,
-    'tcx,
-    F: Fn(
-        &'tcx &'a mir::Body<'tcx>,
-        &'tcx TerminatorKind<'tcx>,
-    ) -> Box<dyn Iterator<Item = &'a BasicBlock> + 'a>,
-> Iterator for ShortCircuitPreorder<'a, 'tcx, F>
+        'a: 'tcx,
+        'tcx,
+        F: Fn(
+            &'tcx &'a mir::Body<'tcx>,
+            &'tcx TerminatorKind<'tcx>,
+        ) -> Box<dyn Iterator<Item = &'a BasicBlock> + 'a>,
+    > Iterator for ShortCircuitPreorder<'a, 'tcx, F>
 {
     type Item = (BasicBlock, &'a BasicBlockData<'tcx>);
 

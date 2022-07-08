@@ -832,7 +832,11 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_rename(&mut self) -> PResult<'a, Option<Ident>> {
-        if self.eat_keyword(kw::As) { self.parse_ident_or_underscore().map(Some) } else { Ok(None) }
+        if self.eat_keyword(kw::As) {
+            self.parse_ident_or_underscore().map(Some)
+        } else {
+            Ok(None)
+        }
     }
 
     fn parse_ident_or_underscore(&mut self) -> PResult<'a, Ident> {
@@ -1512,7 +1516,7 @@ impl<'a> Parser<'a> {
                 return self.unexpected();
             }
             let body = self.parse_token_tree(); // `MacBody`
-            // Convert `MacParams MacBody` into `{ MacParams => MacBody }`.
+                                                // Convert `MacParams MacBody` into `{ MacParams => MacBody }`.
             let bspan = body.span();
             let arrow = TokenTree::token(token::FatArrow, pspan.between(bspan)); // `=>`
             let tokens = TokenStream::new(vec![params.into(), arrow.into(), body.into()]);

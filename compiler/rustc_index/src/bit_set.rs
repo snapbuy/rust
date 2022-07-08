@@ -726,7 +726,11 @@ impl<T: Idx> GrowableBitSet<T> {
     #[inline]
     pub fn contains(&self, elem: T) -> bool {
         let (word_index, mask) = word_index_and_mask(elem);
-        if let Some(word) = self.bit_set.words.get(word_index) { (word & mask) != 0 } else { false }
+        if let Some(word) = self.bit_set.words.get(word_index) {
+            (word & mask) != 0
+        } else {
+            false
+        }
     }
 }
 
@@ -1023,7 +1027,11 @@ impl<R: Idx, C: Idx> SparseBitMatrix<R, C> {
     }
 
     pub fn row(&self, row: R) -> Option<&HybridBitSet<C>> {
-        if let Some(Some(row)) = self.rows.get(row) { Some(row) } else { None }
+        if let Some(Some(row)) = self.rows.get(row) {
+            Some(row)
+        } else {
+            None
+        }
     }
 }
 

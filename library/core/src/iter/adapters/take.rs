@@ -89,7 +89,11 @@ where
             move |acc, x| {
                 *n -= 1;
                 let r = fold(acc, x);
-                if *n == 0 { ControlFlow::Break(r) } else { ControlFlow::from_try(r) }
+                if *n == 0 {
+                    ControlFlow::Break(r)
+                } else {
+                    ControlFlow::from_try(r)
+                }
             }
         }
 

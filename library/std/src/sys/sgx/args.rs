@@ -25,7 +25,11 @@ pub unsafe fn init(argc: isize, argv: *const *const u8) {
 
 pub fn args() -> Args {
     let args = unsafe { (ARGS.load(Ordering::Relaxed) as *const ArgsStore).as_ref() };
-    if let Some(args) = args { Args(args.iter()) } else { Args([].iter()) }
+    if let Some(args) = args {
+        Args(args.iter())
+    } else {
+        Args([].iter())
+    }
 }
 
 pub struct Args(slice::Iter<'static, OsString>);

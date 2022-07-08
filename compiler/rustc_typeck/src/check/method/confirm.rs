@@ -500,7 +500,11 @@ impl<'a, 'tcx> ConfirmContext<'a, 'tcx> {
                     let span = iter::zip(&predicates.predicates, &predicates.spans)
                         .find_map(
                             |(p, span)| {
-                                if *p == obligation.predicate { Some(*span) } else { None }
+                                if *p == obligation.predicate {
+                                    Some(*span)
+                                } else {
+                                    None
+                                }
                             },
                         )
                         .unwrap_or(rustc_span::DUMMY_SP);

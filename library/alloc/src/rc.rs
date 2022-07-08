@@ -1023,7 +1023,11 @@ impl<T: ?Sized> Rc<T> {
     #[inline]
     #[stable(feature = "rc_unique", since = "1.4.0")]
     pub fn get_mut(this: &mut Self) -> Option<&mut T> {
-        if Rc::is_unique(this) { unsafe { Some(Rc::get_mut_unchecked(this)) } } else { None }
+        if Rc::is_unique(this) {
+            unsafe { Some(Rc::get_mut_unchecked(this)) }
+        } else {
+            None
+        }
     }
 
     /// Returns a mutable reference into the given `Rc`,
@@ -2230,7 +2234,11 @@ impl<T: ?Sized> Weak<T> {
     /// If `self` was created using [`Weak::new`], this will return 0.
     #[stable(feature = "weak_counts", since = "1.41.0")]
     pub fn strong_count(&self) -> usize {
-        if let Some(inner) = self.inner() { inner.strong() } else { 0 }
+        if let Some(inner) = self.inner() {
+            inner.strong()
+        } else {
+            0
+        }
     }
 
     /// Gets the number of `Weak` pointers pointing to this allocation.

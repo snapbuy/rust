@@ -187,7 +187,11 @@ impl Condvar {
             self.inner.wait(lock);
             mutex::guard_poison(&guard).get()
         };
-        if poisoned { Err(PoisonError::new(guard)) } else { Ok(guard) }
+        if poisoned {
+            Err(PoisonError::new(guard))
+        } else {
+            Ok(guard)
+        }
     }
 
     /// Blocks the current thread until this condition variable receives a
@@ -383,7 +387,11 @@ impl Condvar {
             let success = self.inner.wait_timeout(lock, dur);
             (mutex::guard_poison(&guard).get(), WaitTimeoutResult(!success))
         };
-        if poisoned { Err(PoisonError::new((guard, result))) } else { Ok((guard, result)) }
+        if poisoned {
+            Err(PoisonError::new((guard, result)))
+        } else {
+            Ok((guard, result))
+        }
     }
 
     /// Waits on this condition variable for a notification, timing out after a

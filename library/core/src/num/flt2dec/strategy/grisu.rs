@@ -144,17 +144,37 @@ pub fn max_pow10_no_more_than(x: u32) -> (u8, u32) {
 
     if x < X4 {
         if x < X2 {
-            if x < X1 { (0, 1) } else { (1, X1) }
+            if x < X1 {
+                (0, 1)
+            } else {
+                (1, X1)
+            }
         } else {
-            if x < X3 { (2, X2) } else { (3, X3) }
+            if x < X3 {
+                (2, X2)
+            } else {
+                (3, X3)
+            }
         }
     } else {
         if x < X6 {
-            if x < X5 { (4, X4) } else { (5, X5) }
+            if x < X5 {
+                (4, X4)
+            } else {
+                (5, X5)
+            }
         } else if x < X8 {
-            if x < X7 { (6, X6) } else { (7, X7) }
+            if x < X7 {
+                (6, X6)
+            } else {
+                (7, X7)
+            }
         } else {
-            if x < X9 { (8, X8) } else { (9, X9) }
+            if x < X9 {
+                (8, X8)
+            } else {
+                (9, X9)
+            }
         }
     }
 }
@@ -448,7 +468,11 @@ pub fn format_shortest_opt<'a>(
         // this is too liberal, though, so we reject any `w(n)` not between `plus0` and `minus0`,
         // i.e., `plus1 - plus1w(n) <= minus0` or `plus1 - plus1w(n) >= plus0`. we utilize the facts
         // that `threshold = plus1 - minus1` and `plus1 - plus0 = minus0 - minus1 = 2 ulp`.
-        if 2 * ulp <= plus1w && plus1w <= threshold - 4 * ulp { Some((buf, exp)) } else { None }
+        if 2 * ulp <= plus1w && plus1w <= threshold - 4 * ulp {
+            Some((buf, exp))
+        } else {
+            None
+        }
     }
 }
 
@@ -557,7 +581,7 @@ pub fn format_exact_opt<'a>(
         // is the buffer full? run the rounding pass with the remainder.
         if i == len {
             let vrem = ((r as u64) << e) + vfrac; // == (v % 10^kappa) * 2^e
-            // SAFETY: we have initialized `len` many bytes.
+                                                  // SAFETY: we have initialized `len` many bytes.
             return unsafe {
                 possibly_round(buf, len, exp, limit, vrem, (ten_kappa as u64) << e, err << e)
             };

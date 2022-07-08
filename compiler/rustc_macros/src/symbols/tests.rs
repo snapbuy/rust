@@ -18,7 +18,11 @@ fn test_symbols() {
         .iter()
         .filter_map(|i| {
             if let syn::Item::Macro(m) = i {
-                if m.mac.path == symbols_path { Some(m) } else { None }
+                if m.mac.path == symbols_path {
+                    Some(m)
+                } else {
+                    None
+                }
             } else {
                 None
             }

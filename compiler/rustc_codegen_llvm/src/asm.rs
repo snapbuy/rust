@@ -612,7 +612,11 @@ fn modifier_to_llvm(
         InlineAsmRegClass::AArch64(AArch64InlineAsmRegClass::reg) => modifier,
         InlineAsmRegClass::AArch64(AArch64InlineAsmRegClass::vreg)
         | InlineAsmRegClass::AArch64(AArch64InlineAsmRegClass::vreg_low16) => {
-            if modifier == Some('v') { None } else { modifier }
+            if modifier == Some('v') {
+                None
+            } else {
+                modifier
+            }
         }
         InlineAsmRegClass::Arm(ArmInlineAsmRegClass::reg)
         | InlineAsmRegClass::Arm(ArmInlineAsmRegClass::reg_thumb) => None,

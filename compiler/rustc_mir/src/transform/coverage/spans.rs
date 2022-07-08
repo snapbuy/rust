@@ -899,5 +899,9 @@ pub(super) fn filtered_terminator_span(terminator: &'a Terminator<'tcx>) -> Opti
 #[inline]
 pub(super) fn function_source_span(span: Span, body_span: Span) -> Span {
     let original_span = original_sp(span, body_span).with_ctxt(body_span.ctxt());
-    if body_span.contains(original_span) { original_span } else { body_span }
+    if body_span.contains(original_span) {
+        original_span
+    } else {
+        body_span
+    }
 }

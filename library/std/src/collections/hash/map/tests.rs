@@ -698,7 +698,7 @@ fn test_entry() {
 #[test]
 fn test_entry_take_doesnt_corrupt() {
     #![allow(deprecated)] //rand
-    // Test for #19292
+                          // Test for #19292
     fn check(m: &HashMap<i32, ()>) {
         for k in m.keys() {
             assert!(m.contains_key(k), "{} is in keys() but not in the map?", k);
@@ -973,13 +973,12 @@ mod test_drain_filter {
     fn mutating_and_keeping() {
         let pairs = (0..3).map(|i| (i, i));
         let mut map: HashMap<_, _> = pairs.collect();
-        assert!(
-            map.drain_filter(|_, v| {
+        assert!(map
+            .drain_filter(|_, v| {
                 *v += 6;
                 false
             })
-            .eq_sorted(crate::iter::empty())
-        );
+            .eq_sorted(crate::iter::empty()));
         assert!(map.keys().copied().eq_sorted(0..3));
         assert!(map.values().copied().eq_sorted(6..9));
     }
@@ -988,13 +987,12 @@ mod test_drain_filter {
     fn mutating_and_removing() {
         let pairs = (0..3).map(|i| (i, i));
         let mut map: HashMap<_, _> = pairs.collect();
-        assert!(
-            map.drain_filter(|_, v| {
+        assert!(map
+            .drain_filter(|_, v| {
                 *v += 6;
                 true
             })
-            .eq_sorted((0..3).map(|i| (i, i + 6)))
-        );
+            .eq_sorted((0..3).map(|i| (i, i + 6))));
         assert!(map.is_empty());
     }
 

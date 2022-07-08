@@ -282,7 +282,11 @@ fn predicate_references_self(
     match predicate.kind().skip_binder() {
         ty::PredicateKind::Trait(ref data, _) => {
             // In the case of a trait predicate, we can skip the "self" type.
-            if data.trait_ref.substs[1..].iter().any(has_self_ty) { Some(sp) } else { None }
+            if data.trait_ref.substs[1..].iter().any(has_self_ty) {
+                Some(sp)
+            } else {
+                None
+            }
         }
         ty::PredicateKind::Projection(ref data) => {
             // And similarly for projections. This should be redundant with
@@ -300,7 +304,11 @@ fn predicate_references_self(
             //
             // This is ALT2 in issue #56288, see that for discussion of the
             // possible alternatives.
-            if data.projection_ty.substs[1..].iter().any(has_self_ty) { Some(sp) } else { None }
+            if data.projection_ty.substs[1..].iter().any(has_self_ty) {
+                Some(sp)
+            } else {
+                None
+            }
         }
         ty::PredicateKind::WellFormed(..)
         | ty::PredicateKind::ObjectSafe(..)
@@ -529,7 +537,11 @@ fn receiver_for_self_ty<'tcx>(
 ) -> Ty<'tcx> {
     debug!("receiver_for_self_ty({:?}, {:?}, {:?})", receiver_ty, self_ty, method_def_id);
     let substs = InternalSubsts::for_item(tcx, method_def_id, |param, _| {
-        if param.index == 0 { self_ty.into() } else { tcx.mk_param_from_def(param) }
+        if param.index == 0 {
+            self_ty.into()
+        } else {
+            tcx.mk_param_from_def(param)
+        }
     });
 
     let result = receiver_ty.subst(tcx, substs);

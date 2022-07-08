@@ -267,7 +267,11 @@ impl<'a> StripUnconfigured<'a> {
         mut attrs: Vec<ast::Attribute>,
     ) -> Option<Vec<ast::Attribute>> {
         attrs.flat_map_in_place(|attr| self.process_cfg_attr(attr));
-        if self.in_cfg(&attrs) { Some(attrs) } else { None }
+        if self.in_cfg(&attrs) {
+            Some(attrs)
+        } else {
+            None
+        }
     }
 
     /// Performs cfg-expansion on `stream`, producing a new `AttrAnnotatedTokenStream`.

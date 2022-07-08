@@ -645,7 +645,11 @@ impl EmitterWriter {
     }
 
     fn maybe_anonymized(&self, line_num: usize) -> String {
-        if self.ui_testing { ANONYMIZED_LINE_NUM.to_string() } else { line_num.to_string() }
+        if self.ui_testing {
+            ANONYMIZED_LINE_NUM.to_string()
+        } else {
+            line_num.to_string()
+        }
     }
 
     fn draw_line(
@@ -730,7 +734,7 @@ impl EmitterWriter {
         let line_offset = buffer.num_lines();
 
         let left = margin.left(source_string.len()); // Left trim
-        // Account for unicode characters of width !=0 that were removed.
+                                                     // Account for unicode characters of width !=0 that were removed.
         let left = source_string
             .chars()
             .take(left)

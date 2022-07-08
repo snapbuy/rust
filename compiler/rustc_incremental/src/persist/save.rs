@@ -95,11 +95,10 @@ pub fn save_work_product_index(
     for (id, wp) in previous_work_products.iter() {
         if !new_work_products.contains_key(id) {
             work_product::delete_workproduct_files(sess, wp);
-            debug_assert!(
-                wp.saved_file.as_ref().map_or(true, |file_name| {
-                    !in_incr_comp_dir_sess(sess, &file_name).exists()
-                })
-            );
+            debug_assert!(wp
+                .saved_file
+                .as_ref()
+                .map_or(true, |file_name| { !in_incr_comp_dir_sess(sess, &file_name).exists() }));
         }
     }
 

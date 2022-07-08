@@ -121,7 +121,11 @@ impl<T: ?Sized> *mut T {
     pub unsafe fn as_ref<'a>(self) -> Option<&'a T> {
         // SAFETY: the caller must guarantee that `self` is valid for a
         // reference if it isn't null.
-        if self.is_null() { None } else { unsafe { Some(&*self) } }
+        if self.is_null() {
+            None
+        } else {
+            unsafe { Some(&*self) }
+        }
     }
 
     /// Returns `None` if the pointer is null, or else returns a shared reference to
@@ -174,7 +178,11 @@ impl<T: ?Sized> *mut T {
     {
         // SAFETY: the caller must guarantee that `self` meets all the
         // requirements for a reference.
-        if self.is_null() { None } else { Some(unsafe { &*(self as *const MaybeUninit<T>) }) }
+        if self.is_null() {
+            None
+        } else {
+            Some(unsafe { &*(self as *const MaybeUninit<T>) })
+        }
     }
 
     /// Calculates the offset from a pointer.
@@ -366,7 +374,11 @@ impl<T: ?Sized> *mut T {
     pub unsafe fn as_mut<'a>(self) -> Option<&'a mut T> {
         // SAFETY: the caller must guarantee that `self` is be valid for
         // a mutable reference if it isn't null.
-        if self.is_null() { None } else { unsafe { Some(&mut *self) } }
+        if self.is_null() {
+            None
+        } else {
+            unsafe { Some(&mut *self) }
+        }
     }
 
     /// Returns `None` if the pointer is null, or else returns a unique reference to
@@ -403,7 +415,11 @@ impl<T: ?Sized> *mut T {
     {
         // SAFETY: the caller must guarantee that `self` meets all the
         // requirements for a reference.
-        if self.is_null() { None } else { Some(unsafe { &mut *(self as *mut MaybeUninit<T>) }) }
+        if self.is_null() {
+            None
+        } else {
+            Some(unsafe { &mut *(self as *mut MaybeUninit<T>) })
+        }
     }
 
     /// Returns whether two pointers are guaranteed to be equal.

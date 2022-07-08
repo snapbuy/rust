@@ -8,7 +8,11 @@ impl<'tcx> super::QueryTypeOp<'tcx> for Subtype<'tcx> {
     type QueryResponse = ();
 
     fn try_fast_path(_tcx: TyCtxt<'tcx>, key: &ParamEnvAnd<'tcx, Self>) -> Option<()> {
-        if key.value.sub == key.value.sup { Some(()) } else { None }
+        if key.value.sub == key.value.sup {
+            Some(())
+        } else {
+            None
+        }
     }
 
     fn perform_query(

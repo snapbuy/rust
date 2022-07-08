@@ -1103,7 +1103,11 @@ impl Expr {
     pub fn is_potential_trivial_const_param(&self) -> bool {
         let this = if let ExprKind::Block(ref block, None) = self.kind {
             if block.stmts.len() == 1 {
-                if let StmtKind::Expr(ref expr) = block.stmts[0].kind { expr } else { self }
+                if let StmtKind::Expr(ref expr) = block.stmts[0].kind {
+                    expr
+                } else {
+                    self
+                }
             } else {
                 self
             }

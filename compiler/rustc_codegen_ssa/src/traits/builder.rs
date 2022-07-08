@@ -141,7 +141,7 @@ pub trait BuilderMethods<'a, 'tcx>:
     fn volatile_load(&mut self, ptr: Self::Value) -> Self::Value;
     fn atomic_load(&mut self, ptr: Self::Value, order: AtomicOrdering, size: Size) -> Self::Value;
     fn load_operand(&mut self, place: PlaceRef<'tcx, Self::Value>)
-    -> OperandRef<'tcx, Self::Value>;
+        -> OperandRef<'tcx, Self::Value>;
 
     /// Called for Rvalue::Repeat when the elem is neither a ZST nor optimizable using memset.
     fn write_operand_repeatedly(

@@ -96,7 +96,11 @@ fn parse_drive(prefix: &OsStr) -> Option<u8> {
 // Parses a drive prefix exactly, e.g. "C:"
 fn parse_drive_exact(prefix: &OsStr) -> Option<u8> {
     // only parse two bytes: the drive letter and the drive separator
-    if prefix.len() == 2 { parse_drive(prefix) } else { None }
+    if prefix.len() == 2 {
+        parse_drive(prefix)
+    } else {
+        None
+    }
 }
 
 fn strip_prefix<'a>(path: &'a OsStr, prefix: &str) -> Option<&'a OsStr> {

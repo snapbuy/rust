@@ -60,7 +60,11 @@ impl CommandEnv {
     }
 
     pub fn capture_if_changed(&self) -> Option<BTreeMap<EnvKey, OsString>> {
-        if self.is_unchanged() { None } else { Some(self.capture()) }
+        if self.is_unchanged() {
+            None
+        } else {
+            Some(self.capture())
+        }
     }
 
     // The following functions build up changes

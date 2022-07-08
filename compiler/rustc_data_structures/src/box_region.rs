@@ -61,7 +61,11 @@ impl<I, A, R> PinnedGenerator<I, A, R> {
     pub fn complete(&mut self) -> R {
         // Tell the generator we want it to complete, consuming it and yielding a result
         let result = Pin::new(&mut self.generator).resume(Action::Complete);
-        if let GeneratorState::Complete(r) = result { r } else { panic!() }
+        if let GeneratorState::Complete(r) = result {
+            r
+        } else {
+            panic!()
+        }
     }
 }
 

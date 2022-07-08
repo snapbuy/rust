@@ -621,7 +621,11 @@ impl<'a> Components<'a> {
     /// how much of the prefix is left from the point of view of iteration?
     #[inline]
     fn prefix_remaining(&self) -> usize {
-        if self.front == State::Prefix { self.prefix_len() } else { 0 }
+        if self.front == State::Prefix {
+            self.prefix_len()
+        } else {
+            0
+        }
     }
 
     // Given the iteration so far, how much of the pre-State::Body path is left?
@@ -640,7 +644,11 @@ impl<'a> Components<'a> {
 
     #[inline]
     fn is_sep_byte(&self, b: u8) -> bool {
-        if self.prefix_verbatim() { is_verbatim_sep(b) } else { is_sep_byte(b) }
+        if self.prefix_verbatim() {
+            is_verbatim_sep(b)
+        } else {
+            is_sep_byte(b)
+        }
     }
 
     /// Extracts a slice corresponding to the portion of the path remaining for iteration.

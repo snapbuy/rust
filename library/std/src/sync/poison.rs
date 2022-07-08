@@ -26,7 +26,11 @@ impl Flag {
     #[inline]
     pub fn borrow(&self) -> LockResult<Guard> {
         let ret = Guard { panicking: thread::panicking() };
-        if self.get() { Err(PoisonError::new(ret)) } else { Ok(ret) }
+        if self.get() {
+            Err(PoisonError::new(ret))
+        } else {
+            Ok(ret)
+        }
     }
 
     #[inline]
